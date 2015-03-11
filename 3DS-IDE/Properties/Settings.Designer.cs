@@ -22,5 +22,17 @@ namespace _3DS_IDE.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool shouldNew {
+            get {
+                return ((bool)(this["shouldNew"]));
+            }
+            set {
+                this["shouldNew"] = value;
+            }
+        }
     }
 }
