@@ -1,1 +1,9 @@
 C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\bin\Debug\3DS-IDE.exe.config
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\bin\Debug\3DS-IDE.exe
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\bin\Debug\3DS-IDE.pdb
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\obj\Debug\3DS-IDE.csprojResolveAssemblyReference.cache
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\obj\Debug\_3DS_IDE.Form1.resources
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\obj\Debug\_3DS_IDE.Properties.Resources.resources
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\obj\Debug\3DS-IDE.csproj.GenerateResource.Cache
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\obj\Debug\3DS-IDE.exe
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\obj\Debug\3DS-IDE.pdb
