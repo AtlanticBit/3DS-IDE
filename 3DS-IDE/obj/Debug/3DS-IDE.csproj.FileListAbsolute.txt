@@ -7,3 +7,6 @@ C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\obj\Debug\_3DS_IDE.Properties.Resources.r
 C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\obj\Debug\3DS-IDE.csproj.GenerateResource.Cache
 C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\obj\Debug\3DS-IDE.exe
 C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\obj\Debug\3DS-IDE.pdb
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\bin\Debug\ScintillaNET.dll
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\bin\Debug\ScintillaNET.pdb
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\bin\Debug\ScintillaNET.xml

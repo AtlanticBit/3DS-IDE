@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,6 +28,42 @@ namespace _3DS_IDE
         private void Form1_Load(object sender, EventArgs e)
         {
             timer1.Start();
+            if (Directory.Exists(@"C:\3DS-IDE\devkitPro"))
+            {
+                this.pictureBox1.Image = _3DS_IDE.Properties.Resources.check_icon;
+            }
+            else
+            {
+                this.pictureBox1.Image = _3DS_IDE.Properties.Resources.Error_icon;
+            }
+            if (Directory.Exists(@"C:\3DS-IDE\devkitPro\devkitARM"))
+            {
+                this.pictureBox4.Image = _3DS_IDE.Properties.Resources.check_icon;
+            }
+            else
+            {
+                this.pictureBox4.Image = _3DS_IDE.Properties.Resources.Error_icon;
+            }
+            if (Directory.Exists(@"C:\3DS-IDE\magicctrulib"))
+            {
+                this.pictureBox3.Image = _3DS_IDE.Properties.Resources.check_icon;
+            }
+            else
+            {
+                this.pictureBox3.Image = _3DS_IDE.Properties.Resources.Error_icon;
+            }
+            if (Directory.Exists(@"C:\3DS-IDE\tools"))
+            {
+                this.pictureBox2.Image = _3DS_IDE.Properties.Resources.check_icon;
+            }
+            else
+            {
+                this.pictureBox2.Image = _3DS_IDE.Properties.Resources.Error_icon;
+            }
+            timer1.Stop();
+            this.Text = "Finished";
+            button1.Visible = true;
+            
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -48,6 +85,11 @@ namespace _3DS_IDE
             this.Text = "Integrity check...";
             timer4.Stop();
             timer1.Start();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
