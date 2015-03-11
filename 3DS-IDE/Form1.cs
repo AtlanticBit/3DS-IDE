@@ -13,6 +13,10 @@ namespace _3DS_IDE
 {
     public partial class Form1 : Form
     {
+        void cmd(string command)
+        {
+            System.Diagnostics.Process.Start("CMD.exe", command);
+        }
         public Form1()
         {
             InitializeComponent();
@@ -90,6 +94,15 @@ namespace _3DS_IDE
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("To make sure everything works\nthe right way\nset CTRULIB\nDEVKITARM\nand DEVKITPRO\nin your environmental values!");
+            this.Hide();
+            select Form45 = new select();
+            Form45.Show();
+            //string text = System.IO.File.ReadAllText(@"C:\Users\Public\TestFolder\WriteText.txt"); just savin'
         }
     }
 }

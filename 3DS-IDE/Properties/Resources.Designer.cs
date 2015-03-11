@@ -63,6 +63,16 @@ namespace _3DS_IDE.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _3ds {
+            get {
+                object obj = ResourceManager.GetObject("3ds", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap check_icon {
             get {
                 object obj = ResourceManager.GetObject("check-icon", resourceCulture);
