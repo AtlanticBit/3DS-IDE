@@ -50,9 +50,34 @@ table.concat table.foreach table.foreachi table.getn table.sort table.insert tab
 math.abs math.acos math.asin math.atan math.atan2 math.ceil math.cos math.deg math.exp 
 math.floor math.frexp math.ldexp math.log math.log10 math.max math.min math.mod 
 math.pi math.pow math.rad math.random math.randomseed math.sin math.sqrt math.tan 
-string.gmatch string.match string.reverse table.maxn
-math.cosh math.fmod math.modf math.sinh math.tanh math.huge
-sort tinsert tremove
+string.gmatch string.match string.reverse table.maxn 
+math.cosh math.fmod math.modf math.sinh math.tanh math.huge 
+sort tinsert tremove io.open io.read io.write io.size io.close 
+System.exit System.getFirmware System.getKernel System.takeScreenshot System.isGWMode 
+System.is3DSXMode System.currentDirectory System.deleteFile System.deleteDirectory System.renameDirectory 
+System.renameFile System.createDirectory System.listDirectory System.isBatteryCharging 
+System.getBatteryLife System.getModel System.startKeyboard System.launch3DSX System.launchCIA 
+System.extractSMDH System.listExtdataDir System.scanExtdata System.listCIA System.installCIA 
+System.uninstallCIA System.extractZIP System.extractCIA System.checkStatus System.showHomeMenu 
+System.reboot System.launchGamecard System.getFreeSpace System.getTime System.getDate 
+Screen.waitVblankStart Screen.flip Screen.debugPrint Screen.refresh Screen.clear Screen.fillRect 
+Screen.fillEmptyRect Screen.drawLine Screen.drawPixel Screen.getPixel Screen.loadImage 
+Screen.drawImage Screen.drawPartialImage Screen.getImageWidth Screen.getImageHeight Screen.flipImage 
+Screen.createImage Screen.freeImage Screen.saveBitmap Screen.enable3D Screen.disable3D Screen.get3DLevel 
+Console.new Console.clear Console.show Console.append Console.destroy 
+Color.new Color.getR Color.getG Color.getB Color.getA 
+Controls.init Controls.read Controls.check Controls.readCirclePad 
+Controls.readCstickPad Controls.readTouch Controls.getVolume 
+Timer.new Timer.getTime Timer.destroy Timer.reset Timer.pause Timer.resume Timer.isPlaying 
+Network.isWifiEnabled Network.getMacAddress Network.getIpAddress Network.initFTP Network.termFTP 
+Network.downloadFile Network.requestString Network.sendMail 
+Sound.init Sound.term Sound.openWav Sound.openAiff Sound.isPlaying Sound.play Sound.close Sound.pause
+Sound.resume Sound.saveWav Sound.register Sound.getTotalTime Sound.getTime Sound.getSrate Sound.getTitle
+Sound.getAuthor Sound.getType 
+BMPV.load BMPV.start BMPV.draw BMPV.unload BMPV.getFPS BMPV.getFrame BMPV.showFrame BMPV.getSrate 
+BMPV.getSize BMPV.isPlaying BMPV.stop BMPV.pause BMPV.resume JPGV.load JPGV.start JPGV.draw 
+JPGV.unload JPGV.getFPS JPGV.getFrame JPGV.showFrame JPGV.getSrate JPGV.getSize JPGV.isPlaying 
+JPGV.stop JPGV.pause JPGV.resume
 			</Keywords>
 		</Lexer>
 	</Language>
