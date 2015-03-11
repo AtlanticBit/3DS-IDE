@@ -42,6 +42,9 @@ namespace _3DS_IDE
                 workdir = Interaction.InputBox("What do you want to name your project?", "Setup", "");
 
             }
+            this.scintilla1.ConfigurationManager.CustomLocation = @"C:\3DS-IDE\lua.xml";
+            this.scintilla1.AutoComplete.ListString = System.IO.File.ReadAllText(@"C:\3DS-IDE\autolist");
+            this.scintilla1.AutoComplete.Show();
         }
     }
 }
