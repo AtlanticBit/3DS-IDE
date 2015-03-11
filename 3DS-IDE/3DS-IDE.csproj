@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>_3DS_IDE</RootNamespace>
     <AssemblyName>3DS-IDE</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -127,6 +127,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="3d-material-drop-tool.ico" />
+    <None Include="Resources\stop-icon.png" />
+    <None Include="Resources\play-icon.png" />
     <None Include="Resources\Open-file.png" />
     <None Include="Resources\new-file-icon.png" />
     <None Include="Resources\3ds.png" />

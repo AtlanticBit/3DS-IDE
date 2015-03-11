@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using ScintillaNET;
 
 namespace _3DS_IDE
 {
@@ -35,8 +36,6 @@ namespace _3DS_IDE
 
         private void IDE_Load(object sender, EventArgs e)
         {
-            this.AutoSize = true;
-            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             if (shouldNew)
             {
                 createworkdirloc = ChooseFolder();
