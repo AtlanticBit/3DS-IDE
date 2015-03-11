@@ -53,6 +53,7 @@
     <ApplicationIcon>3d-material-drop-tool.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="ScintillaNET">
       <HintPath>..\syntaxdlls\ScintillaNET.dll</HintPath>
     </Reference>

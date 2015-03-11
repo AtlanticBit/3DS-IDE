@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace _3DS_IDE
 {
@@ -25,6 +26,7 @@ namespace _3DS_IDE
             }
         }
         bool shouldNew = Properties.Settings.Default.shouldNew;
+        string createworkdirloc;
         string workdir;
         public IDE()
         {
@@ -37,7 +39,9 @@ namespace _3DS_IDE
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             if (shouldNew)
             {
-                workdir = ChooseFolder();
+                createworkdirloc = ChooseFolder();
+                workdir = Interaction.InputBox("What do you want to name your project?", "Setup", "");
+
             }
         }
     }
