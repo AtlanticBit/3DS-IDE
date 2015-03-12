@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<project SchemaVersion="2.0">
+    <assemblies>
+        <assembly location="..\ScintillaNET\bin\Debug\ScintillaNET.dll" documentation="..\ScintillaNET\bin\Debug\ScintillaNET.xml" />
+    </assemblies>
+    <documenters>
+        <documenter name="MSDN-CHM">
+            <property name="OutputDirectory" value=".\" />
+            <property name="HtmlHelpName" value="ScintillaNet " />
+            <property name="Title" value="Scintilla.Net API Reference" />
+            <property name="CopyrightText" value="Copyright 2007 Scintilla.Net Team" />
+            <property name="CopyrightHref" value="http://www.codeplex.com/ScintillaNET" />
+        </documenter>
+        <documenter name="Intellisense">
+            <property name="OutputDirectory" value=".\intellisense\" />
+        </documenter>
+    </documenters>
+</project>

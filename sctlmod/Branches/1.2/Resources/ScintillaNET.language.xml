@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Scintilla xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <globals>
+      <!-- #region "xml-globals" -->
+      <!-- #endregion -->
+   </globals>
+   <style-classes>
+      <!-- #region "xml-style-classes" -->
+
+      <!-- #endregion -->
+   </style-classes>
+   <keyword-classes>
+      <!--  #region "xml-keyword-classes" -->
+	  
+	  <!-- #endregion -->
+   </keyword-classes>
+   <languages>
+      <!-- #region "xml-languages" -->
+      <!-- #endregion -->
+   </languages>
+</Scintilla> 

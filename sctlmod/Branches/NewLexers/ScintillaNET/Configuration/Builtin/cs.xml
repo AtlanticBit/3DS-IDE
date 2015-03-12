@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<scintilla>
+  <lexing lexer="Cpp" lineCommentPrefix="//" streamCommentPrefix="/* " streamCommentSufix=" */">
+    <keywords name="Primary keywords and identifiers">abstract as ascending base bool break by byte case catch char checked class const continue decimal default delegate descending do double else enum equals event explicit extern false finally fixed float for foreach from goto group if implicit in int interface internal into is join lock let long namespace new null object on operator orderby out override params private protected public readonly ref return sbyte sealed select short sizeof stackalloc static string struct switch this throw true try typeof uint ulong unchecked unsafe ushort using var virtual void volatile where while</keywords>
+  </lexing>
+  <styles>
+    <style name="DEFAULT" foreColor="Black" />
+    <style name="COMMENT" foreColor="Green" />
+    <style name="COMMENTLINE" foreColor="Green" />
+    <style name="COMMENTDOC" foreColor="Green" />
+    <style name="NUMBER" foreColor="Orange" />
+    <style name="WORD" foreColor="Blue" />
+    <style name="STRING" foreColor="Red" />
+    <style name="CHARACTER" foreColor="Red" />
+    <style name="UUID" />
+    <style name="PREPROCESSOR" foreColor="Blue" />
+    <style name="OPERATOR" foreColor="DarkGoldenRod" />
+    <style name="IDENTIFIER" />
+    <style name="STRINGEOL" foreColor="Red" />
+    <style name="VERBATIM" foreColor="Red" />
+    <style name="REGEX" />
+    <style name="COMMENTLINEDOC" foreColor="Green" />
+    <style name="WORD2" foreColor="Teal" />
+    <style name="COMMENTDOCKEYWORD" foreColor="Green" />
+    <style name="COMMENTDOCKEYWORDERROR" foreColor="Green" />
+    <style name="GLOBALCLASS" foreColor="Purple" />
+    <style name="STRINGRAW" />
+    <style name="TRIPLEVERBATIM" />
+    <style name="HASHQUOTEDSTRING" />
+    <style name="PREPROCESSORCOMMENT" />
+  </styles>
+  <snippets>
+    <snippet shortcut="~">
+      ~$classname$()
+      {
+          $end$
+      }
+    </snippet>
+    <snippet shortcut="checked" isSurroundsWith="True">
+      checked
+      {
+          $selected$
+      }$end$
+    </snippet>
+    <snippet shortcut="class" isSurroundsWith="true">
+      public class $name$
+      {
+          $end$$selected$
+      }
+    </snippet>
+    <snippet shortcut="f" isSurroundsWith="True">
+      for (int $i$ = $0$; $i$ &lt; $max$; $i$++)
+      {
+          $selected$$end$
+      }$DropMarker$
+    </snippet>
+    <snippet shortcut="fe" isSurroundsWith="True">
+      foreach ($object$ $item$ in $collection$)
+      {
+          $selected$$end$
+      }$DropMarker$
+    </snippet>
+    <snippet shortcut="do" isSurroundsWith="true">
+      do
+      {
+          $end$$selected$
+      } while ($expression$);
+      $DropMarker$
+    </snippet>
+    <snippet shortcut="namespace" isSurroundsWith="true">
+      namespace $name$
+      {
+          $end$$selected$
+      }
+    </snippet>
+    <snippet shortcut="#if" isSurroundsWith="true">
+      #if $expression$
+      $end$$selected$
+      #endif$DropMarker$
+    </snippet>
+    <snippet shortcut="#region" isSurroundsWith="true">
+      #region $name$
+      $end$$selected$
+      #endregion$DropMarker$
+    </snippet>
+    <snippet shortcut="prop">
+      private $type$ $field$;
+      public $type$ $property$
+      {
+          get { return $field$;}
+          set { $field$ = value;}
+      }
+      $end$
+    </snippet>
+    <snippet shortcut="propg" isSurroundsWith="false">
+      private $type$ $field$;
+      public $type$ $property$
+      {
+          get { return $field$;}
+      }
+      $end$
+    </snippet>
+    <snippet shortcut="sim" isSurroundsWith="false">
+      static int Main(string[] args)
+      {
+          $end$
+          return 0;
+      }
+    </snippet>
+    <snippet shortcut="struct" isSurroundsWith="true">
+      struct $name$
+      {
+          $selected$$end$
+      }
+    </snippet>
+    <snippet shortcut="svm" isSurroundsWith="false">
+      static void Main(string[] args)
+      {
+          $end$
+      }
+    </snippet>
+    <snippet shortcut="switch" isSurroundsWith="false">
+      switch ($expression$)
+      {
+          $cases$
+      }$end$
+    </snippet>
+    <snippet shortcut="t" isSurroundsWith="true">
+      try
+      {
+          $selected$
+      }
+      catch ($expression$)
+      {
+          $end$
+          throw;
+      }
+    </snippet>
+    <snippet shortcut="tf" isSurroundsWith="true">
+      try
+      {
+          $selected$
+      }
+      finally
+      {
+          $end$
+      }
+    </snippet>
+    <snippet shortcut="unchecked" isSurroundsWith="true">
+      unchecked
+      {
+          $end$$selected$
+      }
+    </snippet>
+    <snippet shortcut="unsafe" isSurroundsWith="true">
+      unsafe
+      {
+          $end$$selected$
+      }
+    </snippet>
+    <snippet shortcut="u" isSurroundsWith="true">
+      using($resource$)
+      {
+          $end$$selected$
+      }
+    </snippet>
+    <snippet shortcut="w" isSurroundsWith="true">
+      while ($expression$)
+      {
+          $end$$selected$
+      }
+    </snippet>
+    <snippet shortcut="l" isSurroundsWith="true">
+      else
+          $anchor$$selected$$caret$
+    </snippet>
+    <snippet shortcut="lb" isSurroundsWith="true">
+      else
+      {
+          $anchor$$selected$$caret$
+      }
+    </snippet>
+    <snippet shortcut="enum" isSurroundsWith="false">
+      enum $name$
+      {
+          $end$
+      }
+    </snippet>
+    <snippet shortcut="equals" isSurroundsWith="false">
+      // override object.Equals
+      public override bool Equals (object obj)
+      {
+          //
+          // See the full list of guidelines at
+          // http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpgenref/html/cpconequals.asp
+          // and also the guidance for operator== at
+          // http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpgenref/html/cpconimplementingequalsoperator.asp
+          //
+
+          if (obj == null || GetType() != obj.GetType())
+          {
+              return false;
+          }
+
+          // TODO: write your implementation of Equals() here.
+          $end$throw new NotImplementedException("The method or operation is not implemented.");
+          return base.Equals (obj);
+        }
+
+      // override object.GetHashCode
+      public override int GetHashCode()
+      {
+          // TODO: write your implementation of GetHashCode() here.
+          $DropMarker$throw new NotImplementedException("The method or operation is not implemented.");
+          return base.GetHashCode();
+      }
+    </snippet>
+    <snippet shortcut="if" isSurroundsWith="true">
+      if ($end$)
+          $DropMarker$$selected$
+    </snippet>
+    <snippet shortcut="ifb" isSurroundsWith="true">
+      if ($end$)
+      {
+          $DropMarker$$selected$
+      }
+    </snippet>
+    <snippet shortcut="b" isSurroundsWith="true">
+      {
+          $end$$selected$
+      }
+    </snippet>
+    <snippet shortcut="indexer" isSurroundsWith="false">
+      public $type$ this[$indextype$ index]
+      {
+          get {$end$ /* return the specified index here */ }
+          set {$dropmarker$ /* set the specified index to value here */ }
+      }
+    </snippet>
+    <snippet shortcut="interface" isSurroundsWith="false">
+      interface I$name$
+      {
+          $end$
+      }
+    </snippet>
+    <snippet shortcut="lock" isSurroundsWith="true">
+      lock ($expression$)
+      {
+          $end$$selected$
+      }
+    </snippet>
+  </snippets>
+</scintilla>

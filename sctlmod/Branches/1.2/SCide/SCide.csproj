@@ -1,0 +1,148 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FB3E07AB-E0FA-4122-BE64-BFFEF510201B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SCide</RootNamespace>
+    <AssemblyName>SCide</AssemblyName>
+    <SccProjectName>%24/ScintillaNET/ScintillaNET/SCide</SccProjectName>
+    <SccLocalPath>.</SccLocalPath>
+    <SccAuxPath>https://tfs01.codeplex.com</SccAuxPath>
+    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.0.2646.25434, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SCidePluginCore\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HtmlEditorDockContent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HtmlEditorDockContent.Designer.cs">
+      <DependentUpon>HtmlEditorDockContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileEditorDockContent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileEditorDockContent.Designer.cs">
+      <DependentUpon>FileEditorDockContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="HtmlEditorDockContent.resx">
+      <DependentUpon>HtmlEditorDockContent.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileEditorDockContent.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FileEditorDockContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScideAboutBox.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ScideAboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScideMDI.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ScideMDI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestConfigurationForm.resx">
+      <DependentUpon>TestConfigurationForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ScideAboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScideAboutBox.Designer.cs">
+      <DependentUpon>ScideAboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScideMDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScideMDI.Designer.cs">
+      <DependentUpon>ScideMDI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestConfigurationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestConfigurationForm.Designer.cs">
+      <DependentUpon>TestConfigurationForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HtmlEditControl\HtmlEditControl.csproj">
+      <Project>{FEA375D2-65A8-436C-9E5D-9C62C9FAE40E}</Project>
+      <Name>HtmlEditControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCidePluginCore\SCidePluginCore.csproj">
+      <Project>{C5441D9C-4BC0-459E-8526-ACDBB87E459B}</Project>
+      <Name>SCidePluginCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ScintillaNET\ScintillaNET.csproj">
+      <Project>{F9B6DABD-BBC1-4638-8CE6-A5C9506BFDCB}</Project>
+      <Name>ScintillaNET</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SCide.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(SolutionDir)\Resources\SciLexer.dll" $(TargetDir) /Y
+xcopy "$(SolutionDir)\Resources\SciLexer.dll" %25windir%25\system32\ /Y /C</PreBuildEvent>
+  </PropertyGroup>
+</Project>

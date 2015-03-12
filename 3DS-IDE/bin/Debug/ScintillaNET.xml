@@ -3605,6 +3605,12 @@
             </summary>
             <param name="e">An <see cref="T:ScintillaNET.CallTipClickEventArgs"/> that contains the event data.</param>
         </member>
+        <member name="F:ScintillaNET.Scintilla._autoLaunchAutoComplete">
+            <summary>
+                Raises the <see cref="E:ScintillaNET.Scintilla.CharAdded"/> event.
+            </summary>
+            <param name="e">An <see cref="T:ScintillaNET.CharAddedEventArgs"/> that contains the event data.</param>
+        </member>
         <member name="M:ScintillaNET.Scintilla.OnCharAdded(ScintillaNET.CharAddedEventArgs)">
             <summary>
                 Raises the <see cref="E:ScintillaNET.Scintilla.CharAdded"/> event.

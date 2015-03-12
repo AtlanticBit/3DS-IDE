@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<scintilla>
+  <lexing lexer="cpp" lineCommentPrefix="//" streamCommentPrefix="/* " streamCommentSuffix=" */">
+    <keywords name="Primary keywords and identifiers">abstract boolean break byte case catch char class const continue debugger default delete do double else enum export extends final finally float for function goto if implements import in instanceof int interface long native new package private protected public return short static super switch synchronized this throw throws transient try typeof var void volatile while with</keywords>
+  </lexing>
+  <styles>
+    <style name="DEFAULT" foreColor="Black" />
+    <style name="COMMENT" foreColor="Green" />
+    <style name="COMMENTLINE" foreColor="Green" />
+    <style name="COMMENTDOC" foreColor="Green" />
+    <style name="NUMBER" foreColor="Orange" />
+    <style name="WORD" foreColor="Blue" />
+    <style name="STRING" foreColor="Red" />
+    <style name="CHARACTER" foreColor="Red" />
+    <style name="UUID" />
+    <style name="PREPROCESSOR" foreColor="Blue" />
+    <style name="OPERATOR" foreColor="DarkGoldenRod" />
+    <style name="IDENTIFIER" />
+    <style name="STRINGEOL" foreColor="Red" />
+    <style name="VERBATIM" foreColor="Red" />
+    <style name="REGEX" />
+    <style name="COMMENTLINEDOC" foreColor="Green" />
+    <style name="WORD2" foreColor="Teal" />
+    <style name="COMMENTDOCKEYWORD" foreColor="Green" />
+    <style name="COMMENTDOCKEYWORDERROR" foreColor="Green" />
+    <style name="GLOBALCLASS" foreColor="Purple" />
+    <style name="STRINGRAW" />
+    <style name="TRIPLEVERBATIM" />
+    <style name="HASHQUOTEDSTRING" />
+    <style name="PREPROCESSORCOMMENT" />
+  </styles>
+  <snippets>
+    <snippet shortcut="f" isSurroundsWith="True">
+      for (int $i$ = $0$; $i$ &lt; $max$; $i$++)
+      {
+          $selected$$end$
+      }$DropMarker$
+    </snippet>
+    <snippet shortcut="fi" isSurroundsWith="True">
+      for (var $i$ in $k$)
+      {
+          $selected$$end$
+      }$DropMarker$
+    </snippet>
+    <snippet shortcut="do" isSurroundsWith="true">
+      do
+      {
+          $end$$selected$
+      } while ($expression$);
+      $DropMarker$
+    </snippet>
+    <snippet shortcut="switch" isSurroundsWith="false">
+      switch ($expression$)
+      {
+          $cases$
+      }$end$
+    </snippet>
+    <snippet shortcut="t" isSurroundsWith="true">
+      try
+      {
+          $selected$
+      }
+      catch ($expression$)
+      {
+          $end$
+          throw;
+      }
+    </snippet>
+    <snippet shortcut="tf" isSurroundsWith="true">
+      try
+      {
+          $selected$
+      }
+      finally
+      {
+          $end$
+      }
+    </snippet>
+    <snippet shortcut="w" isSurroundsWith="true">
+      while ($expression$)
+      {
+          $end$$selected$
+      }
+    </snippet>
+    <snippet shortcut="l" isSurroundsWith="true">
+      else
+          $anchor$$selected$$caret$
+    </snippet>
+    <snippet shortcut="lb" isSurroundsWith="true">
+      else
+      {
+          $anchor$$selected$$caret$
+      }
+    </snippet>
+    <snippet shortcut="if" isSurroundsWith="true">
+      if ($end$)
+          $DropMarker$$selected$
+    </snippet>
+    <snippet shortcut="ifb" isSurroundsWith="true">
+      if ($end$)
+      {
+          $DropMarker$$selected$
+      }
+    </snippet>
+    <snippet shortcut="b" isSurroundsWith="true">
+      {
+          $end$$selected$
+      }
+    </snippet>
+  </snippets>
+</scintilla>

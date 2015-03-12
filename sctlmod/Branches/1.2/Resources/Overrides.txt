@@ -1,0 +1,23 @@
+## These are all manually implemented to use enum.
+## No point in emitting the non enum versions
+ViewWS emitted=true
+EOLMode emitted=true
+ConvertEOLs emitted=true
+MarkerDefine emitted=true
+StyleSetCharacterSet emitted=true
+StyleSetCase emitted=true
+IndicSetStyle emitted=true
+IndicGetStyle emitted=true
+IndicSetFore emitted=true
+IndicSetBack emitted=true
+GetLine emitted=true
+GetText emitted=true
+CodePage emitted=true
+CharAt emitted=true
+DocPointer emitted=true
+CreateDocument emitted=true
+AddRefDocument emitted=true
+ReleaseDocument emitted=true
+AssignCmdKey emitted=true
+ClearCmdKey emitted=true
+Keys emitted=false

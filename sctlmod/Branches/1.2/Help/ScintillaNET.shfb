@@ -1,0 +1,42 @@
+﻿<project schemaVersion="1.3.3.1">
+    <assemblies>
+        <assembly assemblyPath="C:\ScintillaNet\ScintillaNET\ScintillaNET\bin\Debug\ScintillaNET.dll" xmlCommentsPath="C:\ScintillaNet\ScintillaNET\ScintillaNET\bin\Debug\ScintillaNET.XML" commentsOnly="False" />
+    </assemblies>
+    <namespaceSummaries>
+        <namespaceSummaryItem name="" isDocumented="False" />
+        <namespaceSummaryItem name="Scintilla" isDocumented="True" />
+        <namespaceSummaryItem name="Scintilla.Enums" isDocumented="True" />
+        <namespaceSummaryItem name="Scintilla.Forms" isDocumented="True" />
+        <namespaceSummaryItem name="Scintilla.Configuration.Legacy" isDocumented="True" />
+        <namespaceSummaryItem name="Scintilla.Lexers" isDocumented="True" />
+    </namespaceSummaries>
+    <contentPlacement>AboveNamespaces</contentPlacement>
+    <projectSummary>summary??</projectSummary>
+    <sandcastlePath />
+    <hhcPath />
+    <hxcompPath />
+    <outputPath>.\Help\</outputPath>
+    <helpFileFormat>HtmlHelp1x</helpFileFormat>
+    <cleanIntermediates>False</cleanIntermediates>
+    <purgeDuplicateTopics>True</purgeDuplicateTopics>
+    <cppCommentsFixup>False</cppCommentsFixup>
+    <frameworkVersion>2.0.50727</frameworkVersion>
+    <binaryTOC>False</binaryTOC>
+    <includeFavorites>False</includeFavorites>
+    <preliminary>True</preliminary>
+    <rootNSContainer>False</rootNSContainer>
+    <helpTitle>ScintillaNET Help</helpTitle>
+    <htmlHelpName>ScintillaNET</htmlHelpName>
+    <language>en-US</language>
+    <copyrightHref />
+    <copyrightText />
+    <feedbackEMailAddress />
+    <headerText>ScintillaNET</headerText>
+    <projectLinks>Local</projectLinks>
+    <sdkLinks>Msdn</sdkLinks>
+    <presentationStyle>VS2005</presentationStyle>
+    <namingMethod>MemberName</namingMethod>
+    <syntaxFilters>CSharp, VisualBasic</syntaxFilters>
+    <missingTags>Summary, Parameter, Returns, Value, Remarks, AutoDocumentCtors</missingTags>
+    <visibleItems>ExplicitInterfaceImplementations, InheritedMembers, InheritedFrameworkMembers, Protected, SealedProtected</visibleItems>
+</project>

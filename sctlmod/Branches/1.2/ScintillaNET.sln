@@ -1,0 +1,113 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScintillaNET", "ScintillaNET\ScintillaNET.csproj", "{F9B6DABD-BBC1-4638-8CE6-A5C9506BFDCB}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+	ProjectSection(ProjectDependencies) = postProject
+		{10BE246A-85FA-449A-892A-B00B2B6A12BA} = {10BE246A-85FA-449A-892A-B00B2B6A12BA}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCide", "SCide\SCide.csproj", "{FB3E07AB-E0FA-4122-BE64-BFFEF510201B}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+	ProjectSection(ProjectDependencies) = postProject
+		{F9B6DABD-BBC1-4638-8CE6-A5C9506BFDCB} = {F9B6DABD-BBC1-4638-8CE6-A5C9506BFDCB}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScintillaBindingGenerator", "ScintillaBindingGenerator\ScintillaBindingGenerator.csproj", "{10BE246A-85FA-449A-892A-B00B2B6A12BA}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlEditControl", "HtmlEditControl\HtmlEditControl.csproj", "{FEA375D2-65A8-436C-9E5D-9C62C9FAE40E}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{76CB6998-B26B-48B4-9486-162C9FE6C0B8}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Help", "Help\Help.csproj", "{53FE3C4D-C57A-436E-8318-3F607F15BFCC}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCidePluginCore", "SCidePluginCore\SCidePluginCore.csproj", "{C5441D9C-4BC0-459E-8526-ACDBB87E459B}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs01.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = SCide\\SCide.csproj
+		SccProjectName1 = SCide
+		SccLocalPath1 = SCide
+		SccProjectUniqueName2 = ScintillaBindingGenerator\\ScintillaBindingGenerator.csproj
+		SccProjectName2 = ScintillaBindingGenerator
+		SccLocalPath2 = ScintillaBindingGenerator
+		SccProjectUniqueName3 = ScintillaNET\\ScintillaNET.csproj
+		SccProjectName3 = ScintillaNET
+		SccLocalPath3 = ScintillaNET
+		SccProjectUniqueName4 = HtmlEditControl\\HtmlEditControl.csproj
+		SccProjectName4 = HtmlEditControl
+		SccLocalPath4 = HtmlEditControl
+		SccProjectUniqueName5 = Resources\\Resources.csproj
+		SccProjectName5 = Resources
+		SccLocalPath5 = Resources
+		SccProjectUniqueName6 = Help\\Help.csproj
+		SccProjectName6 = Help
+		SccLocalPath6 = Help
+		SccProjectUniqueName7 = SCidePluginCore\\SCidePluginCore.csproj
+		SccProjectName7 = SCidePluginCore
+		SccLocalPath7 = SCidePluginCore
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9B6DABD-BBC1-4638-8CE6-A5C9506BFDCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9B6DABD-BBC1-4638-8CE6-A5C9506BFDCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9B6DABD-BBC1-4638-8CE6-A5C9506BFDCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9B6DABD-BBC1-4638-8CE6-A5C9506BFDCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB3E07AB-E0FA-4122-BE64-BFFEF510201B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB3E07AB-E0FA-4122-BE64-BFFEF510201B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB3E07AB-E0FA-4122-BE64-BFFEF510201B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB3E07AB-E0FA-4122-BE64-BFFEF510201B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10BE246A-85FA-449A-892A-B00B2B6A12BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10BE246A-85FA-449A-892A-B00B2B6A12BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10BE246A-85FA-449A-892A-B00B2B6A12BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEA375D2-65A8-436C-9E5D-9C62C9FAE40E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA375D2-65A8-436C-9E5D-9C62C9FAE40E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEA375D2-65A8-436C-9E5D-9C62C9FAE40E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76CB6998-B26B-48B4-9486-162C9FE6C0B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76CB6998-B26B-48B4-9486-162C9FE6C0B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76CB6998-B26B-48B4-9486-162C9FE6C0B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53FE3C4D-C57A-436E-8318-3F607F15BFCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53FE3C4D-C57A-436E-8318-3F607F15BFCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53FE3C4D-C57A-436E-8318-3F607F15BFCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5441D9C-4BC0-459E-8526-ACDBB87E459B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5441D9C-4BC0-459E-8526-ACDBB87E459B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5441D9C-4BC0-459E-8526-ACDBB87E459B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5441D9C-4BC0-459E-8526-ACDBB87E459B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

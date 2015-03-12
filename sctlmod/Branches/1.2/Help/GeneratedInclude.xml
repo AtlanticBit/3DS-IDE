@@ -1,0 +1,1594 @@
+<?xml version="1.0" ?>
+<root>
+	<Methods>
+		<Method name="AddRefDocument">
+			<summary>This increases the reference count of a document by 1.</summary>
+			<remarks>Use this method if you want to replace the current document in the Scintilla window and take ownership of the current document, for example if you are editing many documents in one window.</remarks>
+			<param name="doc">Reference to a ScintillaDocument. You can get a doc reference with <see cref="Scintilla.ScintillaControl.CreateDocument"/> or <see cref="Scintilla.ScintillaControl.DocPointer"/>.</param>
+			<seealso cref="Scintilla.ScintillaControl.CreateDocument"/>
+			<seealso cref="Scintilla.ScintillaControl.ReleaseDocument"/>
+			<seealso cref="Scintilla.ScintillaControl.DocPointer"/>
+			<example> This example shows how we can swap out 2 documents using a single ScintillaControl
+				<code>
+private IntPtr altDoc;
+private void swapDoc()
+{
+	//	Save off the current document reference and up the ref count so that 
+	//	Scintilla doesn't kill the doc when we replace it
+	IntPtr oldDoc = scintillaControl.DocPointer;
+	scintillaControl.AddRefDocument(oldDoc);
+
+	//	This isn't technically necessary as Scintilla will just create a new
+	//	document if we pass it a 0
+	if(altDoc == IntPtr.Zero)
+		altDoc = scintillaControl.CreateDocument();
+
+	//	Swap docs
+	scintillaControl.DocPointer = altDoc;
+
+	//	We have to release the ref count on this doc becuase the 
+	//	DocPointer setter increases it by 1.
+	scintillaControl.ReleaseDocument(altDoc);
+
+	//	And store off the oldDoc's reference
+	altDoc = oldDoc;
+}				</code>
+			</example>
+		</Method>
+		<Method name="AddText">
+			<summary>Inserts text at the current position.</summary>
+			<remarks>The current position is set at the end of the inserted text, but it is not scrolled into view.</remarks>
+			<param name="text">Text to insert into the document</param>
+			<seealso cref="AppendText"/>
+			<example>
+				<code>scintillaControl.AddText("Here's some text to insert at the current position!");</code>
+			</example>
+		</Method>
+		<Method name="Allocate">
+			<summary>Allocate a document buffer large enough to store a given number of bytes.</summary>
+			<remarks>
+				The document will not be made smaller than its current contents. This is generally used when you know you are about to
+				load a very large document into Scintilla. 
+			</remarks>
+			<param name="bytes"># of bytes the document will be increased to (not by)</param>
+			<example>
+				<code>scintillaControl.Allocate(10000);</code>
+			</example>
+		</Method>
+		<Method name="AppendText">
+			<summary>Adds text to the end of the document.</summary>
+			<remarks>The current selection is not changed and the new text is not scrolled into view.</remarks>
+			<param name="text">The text to append to the document.</param>
+			<seealso cref="AddText"/>
+			<example>
+				<code>scintillaControl.AppendText("Here is some text to append to the document!");</code>
+			</example>
+		</Method>
+		<Method name="AssignCmdKey">
+			<summary>This assigns the given key definition to a Scintilla command identified by msg.</summary>
+			<remarks> 
+				Refer to the <see href="http://scintilla.sourceforge.net/ScintillaDoc.html">Scintilla Documentation</see> for the 
+				list of SCI_* commands. At this time ScintillaNET does not have these defined as constants or enumerations. This means
+				you have to look at Scintilla.h or Scintilla.iface to get the integer values.
+			</remarks>
+			<param name="km">Key data to bind the command to</param>
+			<param name="msg">Any SCI_* command that has no arguments.</param>
+			<seealso cref="Scintilla.ScintillaControl.ClearCmdKey" />
+			<seealso cref="Scintilla.ScintillaControl.ClearAllCmdKeys" />
+			<example> This example shows how we can bind CTRL+SHIFT+C to the <see cref="Scintilla.ScintillaControl.ClearAll"/> command.
+				<code>scintillaControl.AssignCmdKey((Keys.C | Keys.Shift | Keys.Control), 2004);</code>
+			</example>
+		</Method>
+		<Method name="AutoCCancel">
+			<summary>Cancels any displayed autocompletion list.</summary>
+			<remarks>
+				When in autocompletion mode, the list should disappear when the user types a character that can not be part of the autocompletion, such as '.', '(' or 
+				'[' when typing an identifier. A set of characters that will cancel autocompletion can be specified with <see cref="Scintilla.ScintillaControl.AutoCStops"/>. 
+				Also this method can be used in the <see cref="Scintilla.ScintillaControl.AutoCSelection" /> event to prevent Scintilla from autocompleting.
+			</remarks>
+			<seealso cref="Scintilla.ScintillaControl.AutoCShow"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCCancel"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCActive"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCPosStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCComplete"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCStops"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSelect"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCurrent"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetFillUps"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.RegisterImage"/>
+			<seealso cref="Scintilla.ScintillaControl.clearRegisteredImages"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxWidth"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxWidth"/>
+			<example> 
+				This example closes any autocomplete lists that may be displayed whenever a 'p' has been typed into the document.
+				Arbitrary? Yes. Can I think of a better example OTTOMH? No.
+				<code>
+private void scintillaControl_CharAdded(object sender, CharAddedEventArgs e)
+{
+	if(e.Ch == 'p')
+		scintillaControl.AutoCCancel();
+}
+				</code>
+			</example>
+		</Method>
+		<Method name="AutoCComplete">
+			<summary>This accepts an active autocompletion.</summary>
+			<remarks>This has the same effect as the tab or enter key.</remarks>
+			<seealso cref="Scintilla.ScintillaControl.AutoCShow"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCCancel"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCActive"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCPosStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCComplete"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCStops"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSelect"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCurrent"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetFillUps"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.RegisterImage"/>
+			<seealso cref="Scintilla.ScintillaControl.clearRegisteredImages"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxWidth"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxWidth"/>
+
+			<example>
+				This example automatically accepts any active autocompletion whenever a 'p' has been typed into the document.
+				Another arbitrary example ...
+				<code>
+private void scintillaControl_CharAdded(object sender, CharAddedEventArgs e)
+{
+	if(e.Ch == 'p')
+		scintillaControl.AutoCComplete();
+}
+				</code>
+			</example>
+		</Method>
+		<Method name="AutoCGetCurrent">
+			<summary>Returns the index of the currently selected autocomplete item.</summary>
+			<remarks>If there is no active autocomplete list 0 is returned.</remarks>
+			<returns>index of the currently selected autocomplete item</returns>
+			<seealso cref="Scintilla.ScintillaControl.AutoCShow"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCCancel"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCActive"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCPosStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCComplete"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCStops"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSelect"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCurrent"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetFillUps"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.RegisterImage"/>
+			<seealso cref="Scintilla.ScintillaControl.clearRegisteredImages"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxWidth"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxWidth"/>
+			<example>
+				<code>
+private const string list = "aaa abbsadfasdfdsf bbb cccjfsdagh33 ccd cdd eee fff ggg";
+private void scintillaControl_CharAdded(object sender, CharAddedEventArgs e)
+{
+	if (!scintillaControl.IsAutoCActive)
+	{
+		int pos = scintillaControl.CurrentPos;
+		int wordStart = scintillaControl.WordStartPosition(pos, false);
+		scintillaControl.AutoCShow(pos - wordStart, list);
+	}
+
+	//	Scintilla doesn't seem to return the latest index until sometime
+	//	AFTER the CharAdded event has fired.
+	BeginInvoke(new MethodInvoker(delegate() 
+	{ 
+		//	Be a nice guy and automatically complete if the selection
+		//	happens to be an odd numbered index
+		if(scintillaControl.AutoCGetCurrent() % 2 == 1)
+			scintillaControl.AutoCComplete(); // Gee, thanks...
+	}));
+}
+				</code>
+			</example>
+		</Method>
+		<Method name="AutoCPosStart">
+			<summary>This returns the value of the current position when <see cref="Scintilla.ScintillaControl.AutoCShow"/> started display of the list</summary>
+			<remarks>
+				This is the same value as if you were to call store <see cref="Scintilla.ScintillaControl.CurrentPos"/> immediately before calling
+				<see cref="Scintilla.ScintillaControl.AutoCShow"/>.
+			</remarks>
+			<returns>Current position when list was displayed</returns>
+			<seealso cref="Scintilla.ScintillaControl.AutoCShow"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCCancel"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCActive"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCPosStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCComplete"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCStops"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSelect"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCurrent"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetFillUps"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.RegisterImage"/>
+			<seealso cref="Scintilla.ScintillaControl.clearRegisteredImages"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxWidth"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxWidth"/>
+
+			<example>
+				This example selects the auto completed portion of an autocomplete.
+				<code>
+private void scintillaControl_AutoCSelection(object sender, AutoCSelectionEventArgs e)
+{
+	//	Since the actual autocomplete doesn't actually happen until
+	//	after the event ends we have to do it asynchronously
+	BeginInvoke(new MethodInvoker(delegate()
+	{
+		scintillaControl.Anchor_ = scintillaControl.AutoCPosStart();
+	}));
+}
+				</code>
+			</example>
+		</Method>
+		<Method name="AutoCSelect">
+			<summary>Selects an item in the autocompletion list.</summary>
+			<remarks>
+				It searches the list of words for the first that matches <c>text</c>. By default, comparisons are case sensitive, but you can change this with 
+				<see cref="Scintilla.ScintillaControl.IsAutoCIgnoreCase"/>. The match is character by character for the length of the select string. That 
+				is, if select is "Fred" it will match "Frederick" if this is the first item in the list that begins with "Fred". If an item is found, it 
+				is selected. If the item is not found, the autocompletion list closes if auto-hide is true (see <see cref="Scintilla.ScintillaControl.IsAutoCAutoHide"/>).
+			</remarks>
+			<param name="text">Text to search the list to find a match.</param>
+						<seealso cref="Scintilla.ScintillaControl.AutoCShow"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCCancel"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCActive"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCPosStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCComplete"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCStops"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSelect"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCurrent"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetFillUps"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.RegisterImage"/>
+			<seealso cref="Scintilla.ScintillaControl.clearRegisteredImages"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxWidth"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxWidth"/>
+
+		</Method>
+		<Method name="AutoCSetFillUps">
+			<summary>Sets a list of "Fill Up" characters.</summary>
+			<remarks>
+				If a fillup character is typed with an autocompletion list active, the currently selected item in the list is added into the document, 
+				then the fillup character is added. Common fillup characters are '(', '[' and '.' but others are possible depending on the language. 
+				By default, no fillup characters are set.
+			</remarks>
+			<param name="characterSet">Each character is a "Fill Up" character. The string as a whole is the list.</param>
+			<seealso cref="Scintilla.ScintillaControl.AutoCShow"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCCancel"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCActive"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCPosStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCComplete"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCStops"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSelect"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCurrent"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetFillUps"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.RegisterImage"/>
+			<seealso cref="Scintilla.ScintillaControl.clearRegisteredImages"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxWidth"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxWidth"/>
+
+			<example>
+				<code>scintillaControl.AutoCSetFillUps("([.");</code>
+			</example>
+		</Method>
+		<Method name="AutoCShow">
+			<summary>Causes an autocomplete list to be displayed.</summary>
+			<remarks>
+				lenEntered is the number of characters of the word already entered and list is the list of words separated by separator characters. 
+				The initial separator character is a space but this can be set or got with <see cref="Scintilla.ScintillaControl.AutoCSeparator"/>.
+				The list of words should be in sorted order. If set to ignore case mode with <see cref="Scintilla.ScintillaControl.IsAutoCIgnoreCase"/>, 
+				then strings are matched after being converted to upper case. One result of this is that the list should be sorted with the punctuation 
+				characters '[', '\', ']', '^', '_', and '`' sorted after letters.
+			</remarks>
+			<param name="lenEntered">Number of characters of the word already entered</param>
+			<param name="itemList">List of words separated by separator characters (default is ' ')</param>
+			<seealso cref="Scintilla.ScintillaControl.AutoCShow"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCCancel"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCActive"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCPosStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCComplete"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCStops"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSelect"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCurrent"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetFillUps"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.RegisterImage"/>
+			<seealso cref="Scintilla.ScintillaControl.clearRegisteredImages"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxWidth"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxWidth"/>
+
+			<example>
+				<code>
+private void scintillaControl_CharAdded(object sender, CharAddedEventArgs e)
+{
+	if (!scintillaControl.IsAutoCActive)
+	{
+		int pos = scintillaControl.CurrentPos;
+		int wordStart = scintillaControl.WordStartPosition(pos, false);
+		scintillaControl.AutoCShow(pos - wordStart, list);
+	}
+}				
+				</code>
+			</example>
+		</Method>
+		<Method name="AutoCStops">
+			<summary>Sets the list of characters that will automatically cancel the autocomplete list.</summary>
+			<remarks>When you start the editor, this list is empty.</remarks>
+			<param name="characterSet">Each character is a stop character. The string as a whole is the list.</param>
+			<seealso cref="Scintilla.ScintillaControl.AutoCShow"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCCancel"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCActive"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCPosStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCComplete"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCStops"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSelect"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCurrent"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetCancelAtStart"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetFillUps"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetChooseSingle"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetIgnoreCase"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetAutoHide"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetDropRestOfWord"/>
+			<seealso cref="Scintilla.ScintillaControl.RegisterImage"/>
+			<seealso cref="Scintilla.ScintillaControl.clearRegisteredImages"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetTypeSeparator"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxHeight"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCSetMaxWidth"/>
+			<seealso cref="Scintilla.ScintillaControl.AutoCGetMaxWidth"/>
+
+			<example>
+				<code>scintillaControl.AutoCStops("{_");</code>
+			</example>
+		</Method>
+		<Method name="BackTab">
+        <summary>Simulates pressing SHIFT+TAB</summary>    
+			<example>
+				<code>scintillaControl.BackTab();</code>
+			</example>
+		</Method>
+		<Method name="BeginUndoAction">
+			<summary>Marks the beginning of a set of operations that you want to undo all as one operation.</summary>
+			<remarks>
+				<para>
+					Marks the beginning of a set of operations that you want to undo all as one operation but that you have to generate as several operations.
+					Alternatively, you can use it to mark a set of operations that you do not want to have combined with the preceding or following operations if they are undone.
+				</para>
+				<para>
+					Be sure to balance every BeginUndoAction() with a corresponding EndUndoAction(). Failing to do so can lead to unpredictable
+					results.
+				</para>
+			</remarks>
+			<seealso cref="Scintilla.ScintillaControl.EndUndoAction"/>
+			<example>
+				This example performs 2 operations that would normally take 2 undo operations to completely undo. Becuase they are wrapped in a 
+				BeginUndoAction/EndUndoAction they can both be undone in 1 undo operation.
+				<code> 						
+private void button1_Click(object sender, EventArgs e)
+{
+	scintillaControl.BeginUndoAction();
+
+	scintillaControl.InsertText(0, "Insert some text at the begining of the doc");
+
+	int pos = scintillaControl.CurrentPos;
+	int wordStart = scintillaControl.WordStartPosition(pos, false);
+	int wordEnd = scintillaControl.WordEndPosition(pos, false);
+	scintillaControl.Range(wordStart, pos).Text = "You've been replaced, current word!";
+
+	scintillaControl.EndUndoAction();
+}
+				</code>
+			</example>
+		</Method>
+		<Method name="BraceBadLight">
+			<summary>Sets the style of a single character position to BRACE_BADLIGHT (35)</summary>
+			<remarks>
+				 If there is no matching brace then the brace badlighting style, style BRACE_BADLIGHT (35), can be used to show the brace that is unmatched. 
+				 Using a position of INVALID_POSITION -1 removes the highlight.
+			</remarks>
+			<param name="pos">The position to style as BRACE_BADLIGHT (35)</param>
+			<seealso cref="Scintilla.ScintillaControl.BraceMatch"/>
+			<seealso cref="Scintilla.ScintillaControl.BraceHighlight"/>
+			<example>
+				This shows how you can do simple brace matching.
+				<code>
+private void scintillaControl_UpdateUI(object sender, UpdateUIEventArgs e)
+{
+	int pos1 = scintillaControl.CurrentPos;
+	int pos2 = -1;
+
+	char c = (char)scintillaControl.CharAt(pos1);
+	if(c.ToString().Contains("("))
+	{
+		pos2 = scintillaControl.BraceMatch(pos1);
+
+		if(pos2 >= 0)
+			scintillaControl.BraceHighlight(pos1, pos2);
+		else
+			scintillaControl.BraceBadLight(pos1);
+	}
+	else
+	{
+		scintillaControl.BraceHighlight(-1, -1);
+		scintillaControl.BraceBadLight(-1);
+	}
+}
+				</code>
+			</example>
+		</Method>
+		<Method name="BraceHighlight">
+			<summary>Sets the style of a up to 2 character positions to STYLE_BRACELIGHT (34)</summary>
+			<remarks>
+				<para>
+					Up to two characters can be highlighted in a 'brace highlighting style', which is defined as style number STYLE_BRACELIGHT (34). 
+					If you have enabled indent guides, you may also wish to highlight the indent that corresponds with the brace. You can locate 
+					the column with <see cref="Scintilla.ScintillaControl.Column"/> and highlight the indent with <see cref="Scintilla.ScintillaControl.HighlightGuide"/>.
+				</para>
+				<para>
+					pass -1 to either pos1 or pos2 to clear existing brace highlighting style.
+				</para>
+			</remarks>
+			<param name="pos1">Position 1 to style</param>
+			<param name="pos2">Position 2 to style</param>
+			<seealso cref="Scintilla.ScintillaControl.BraceMatch"/>
+			<seealso cref="Scintilla.ScintillaControl.BraceBadLight"/>
+			<seealso cref="Scintilla.ScintillaControl.Column"/>
+			<seealso cref="Scintilla.ScintillaControl.HighlightGuide"/>
+			<example>
+				This shows how you can do simple brace matching.
+				<code>
+private void scintillaControl_UpdateUI(object sender, UpdateUIEventArgs e)
+{
+	int pos1 = scintillaControl.CurrentPos;
+	int pos2 = -1;
+
+	char c = (char)scintillaControl.CharAt(pos1);
+	if(c.ToString().Contains("("))
+	{
+		pos2 = scintillaControl.BraceMatch(pos1);
+
+		if(pos2 >= 0)
+			scintillaControl.BraceHighlight(pos1, pos2);
+		else
+			scintillaControl.BraceBadLight(pos1);
+	}
+	else
+	{
+		scintillaControl.BraceHighlight(-1, -1);
+		scintillaControl.BraceBadLight(-1);
+	}
+}
+				</code>
+			</example>
+		</Method>
+		<Method name="BraceMatch">
+			<summary>Finds a corresponding matching brace given pos, the position of one brace.</summary>
+			<remarks>
+				<para>
+					The brace characters handled are '(', ')', '[', ']', '{', '}', '&lt;', and '&gt;'. The search is forwards from an 
+					opening brace and backwards from a closing brace. If the character at position is not a brace character, or a matching 
+					brace cannot be found, the return value is -1. Otherwise, the return value is the position of the matching brace.
+				</para>
+				<para>
+					A match only occurs if the style of the matching brace is the same as the starting brace or the matching brace is 
+					beyond the end of styling. Nested braces are handled correctly.
+				</para>
+			</remarks>
+			<param name="pos">Position of a brace character to find a match</param>
+			<returns>Position of the matching brace, or -1 if not found.</returns>
+			<example>
+				This shows how you can do simple brace matching.
+				<code>
+private void scintillaControl_UpdateUI(object sender, UpdateUIEventArgs e)
+{
+	int pos1 = scintillaControl.CurrentPos;
+	int pos2 = -1;
+
+	char c = (char)scintillaControl.CharAt(pos1);
+	if(c.ToString().Contains("("))
+	{
+		pos2 = scintillaControl.BraceMatch(pos1);
+
+		if(pos2 >= 0)
+			scintillaControl.BraceHighlight(pos1, pos2);
+		else
+			scintillaControl.BraceBadLight(pos1);
+	}
+	else
+	{
+		scintillaControl.BraceHighlight(-1, -1);
+		scintillaControl.BraceBadLight(-1);
+	}
+}
+				</code>
+			</example>
+		</Method>
+		<Method name="CallTipCancel">
+			<summary>This message cancels any displayed call tip</summary>
+			<remarks>Scintilla will also cancel call tips for you if you use any keyboard commands that are not compatible with editing the argument list of a function.</remarks>
+			<seealso cref="CallTipPosStart"/>
+			<seealso cref="CallTipSetBack"/>
+			<seealso cref="CallTipSetFore"/>
+			<seealso cref="CallTipSetForeHlt"/>
+			<seealso cref="CallTipSetHlt"/>
+			<seealso cref="CallTipShow"/>
+			<seealso cref="CallTipUseStyle"/>
+			<example>
+				<code>scintillaControl.CallTipCancel()</code>
+			</example>
+		</Method>
+		
+		<Method name="CallTipPosStart">
+			<summary>Returns the value of the current position when CallTipShow started to display the tip.</summary>
+			<seealso cref="CallTipCancel"/>
+			<seealso cref="CallTipSetBack"/>
+			<seealso cref="CallTipSetFore"/>
+			<seealso cref="CallTipSetForeHlt"/>
+			<seealso cref="CallTipSetHlt"/>
+			<seealso cref="CallTipShow"/>
+			<seealso cref="CallTipUseStyle"/>
+			<returns>Value of CurrentPos when CallTipShow was called</returns>
+			<example>
+				<code>int pos = scintillaControl.CallTipPosStart();</code>
+			</example>
+		</Method>
+
+		<Method name="CallTipSetBack">
+			<summary>Sets the background color of call tips.</summary>
+			<remarks>
+				The default colour is white. It is not a good idea to set a dark colour as the background as the default colour for 
+				normal calltip text is mid gray and the defaultcolour for highlighted text is dark blue. 
+				This also sets the background colour of STYLE_CALLTIP.
+			</remarks>
+			<param name="back">Color to set the call tip background color.</param>
+			<seealso cref="CallTipPosStart"/>
+			<seealso cref="CallTipCancel"/>
+			<seealso cref="CallTipSetFore"/>
+			<seealso cref="CallTipSetForeHlt"/>
+			<seealso cref="CallTipSetHlt"/>
+			<seealso cref="CallTipShow"/>
+			<seealso cref="CallTipUseStyle"/>
+			<example>
+				<code>scintillaControl.CallTipSetBack(Scintilla.Utilities.ColorToRgb(Color.Red));</code>
+			</example>
+		</Method>
+		
+		<Method name="CallTipSetFore">
+			<summary>Sets the text color of call tips.</summary>
+			<remarks>The default colour is mid gray. This also sets the foreground colour of STYLE_CALLTIP.</remarks>
+			<param name="fore">Color to set the call tip text color.</param>
+			<seealso cref="CallTipPosStart"/>
+			<seealso cref="CallTipCancel"/>
+			<seealso cref="CallTipSetBack"/>
+			<seealso cref="CallTipSetForeHlt"/>
+			<seealso cref="CallTipSetHlt"/>
+			<seealso cref="CallTipShow"/>
+			<seealso cref="CallTipUseStyle"/>
+			<example>
+				<code>scintillaControl.CallTipSetFore(Scintilla.Utilities.ColorToRgb(Color.Red));</code>
+			</example>
+		</Method>
+		<Method name="CallTipSetForeHlt">
+			<summary>Sets the text color of highlighted call tip text</summary>
+			<remarks>The default is dark blue</remarks>
+			<param name="fore">Color to set the call tip highlighted text color.</param>
+			<seealso cref="CallTipPosStart"/>
+			<seealso cref="CallTipCancel"/>
+			<seealso cref="CallTipSetFore"/>
+			<seealso cref="CallTipSetBack"/>
+			<seealso cref="CallTipSetForeHlt"/>
+			<seealso cref="CallTipSetHlt"/>
+			<seealso cref="CallTipShow"/>
+			<seealso cref="CallTipUseStyle"/>
+			<example>
+				<code>scintillaControl.CallTipSetForeHlt(Scintilla.Utilities.ColorToRgb(Color.Red));</code>
+			</example>
+		</Method>
+			<Method name="CallTipSetHlt">
+			<summary>Sets the region of the call tips text to display in a highlighted style.</summary>
+			<remarks>
+				<para>end must be greater than start; end-start is the number of characters to highlight. Highlights can extend over line ends if this is required.</para>
+				<para>
+					Unhighlighted text is drawn in a mid gray. Selected text is drawn in a dark blue. The background is white. 
+					These can be changed with <see cref="Scintilla.SctinillaControl.CallTipSetBack"/>, <see cref="Scintilla.SctinillaControl.CallTipSetFore"/>, 
+					and <see cref="Scintilla.SctinillaControl.CallTipSetForeHlt"/>. 
+				</para>
+			</remarks>
+			<param name="start">The zero-based index into the string of the first character to highlight</param>
+			<param name="end">The index of the first character after the highlight</param>
+			<seealso cref="CallTipPosStart"/>
+			<seealso cref="CallTipCancel"/>
+			<seealso cref="CallTipSetFore"/>
+			<seealso cref="CallTipSetBack"/>
+			<seealso cref="CallTipSetForeHlt"/>
+			<seealso cref="CallTipSetHlt"/>
+			<seealso cref="CallTipShow"/>
+			<seealso cref="CallTipUseStyle"/>
+			<example>
+				<code>
+scintillaControl.CallTipShow(scintillaControl.CurrentPos, "blah blah blah");
+scintillaControl.CallTipSetHlt(5, 9);
+				</code>
+			</example>
+		</Method>
+		<Method name="CallTipShow">
+			<summary>Displays the call tip window.</summary>
+			<remarks>
+				<para>
+					The Scintilla documentation states that if the call tip window is open, this method has no effect. However my experience has shown that sometimes
+					it shows the new call tip window and sometimes it doesn't. I recommend always calling <see cref="Scintilla.ScintillaControl.CallTipCancel" /> to
+					make sure any existing call tip is closed and the new one is properly displayed.
+				</para>c
+				<para>
+					Call tips can display an up and down arrow by embedding a \u0001 and \u0002 in the definition respectively.
+				</para>
+				<para>
+					The call tip text is aligned to start 1 line below this character unless you have included up and/or down arrows in the call tip text in which case the tip 
+					is aligned to the right-hand edge of the rightmost arrow. The assumption is that you will start the text with something like "\u0001 1 of 3 \u0002".
+					definition is the call tip text. This can contain multiple lines separated by '\n' (Line Feed, ASCII code 10) characters. Do not include '\r' 
+					(Carriage Return, ASCII code 13), as this will most likely print as an empty box. '\t' (Tab, ASCII code 9) is supported if you set a tabsize with 
+					<see cref="CallTipUseStyle" />.
+				</para>
+			</remarks>
+			<param name="pos">The position in the document at which to align the call tip.</param>
+			<param name="definition">The text of the call tip window</param>
+			<example>
+int position = 0;
+string[] callipList = { "Hi", "Hello", "Wassup?", "OK", "Cancel", "Abort", "Retry", "Cancel" };
+
+private void scintillaControl_CallTipClick(object sender, CallTipClickEventArgs e)
+{
+    if(e.Position == 1)
+    {
+        position++;
+        if(position == callipList.Length)
+            position = 0;
+    }
+    else if (e.Position == 2)
+    {
+        position--;
+        if(position &lt; 0)
+            position = callipList.Length - 1;
+    }
+
+    string s = "{0}   \u0001 {1} of {2} \u0002";
+    s = string.Format(s, callipList[position], position + 1, callipList.Length);
+
+    scintillaControl.CallTipCancel();
+    scintillaControl.CallTipShow(scintillaControl.CurrentPos, s);
+}
+			</example>
+		</Method>
+		<Method name="CallTipUseStyle">
+			<summary>Changes the style used for call tips from STYLE_DEFAULT to STYLE_CALLTIP and sets a tab size in screen pixels</summary>
+			<remarks>If tabsize is less than 1, Tab characters are not treated specially. Once this call has been used, the call tip foreground and background colours are also taken from the style.</remarks>
+			<param name="tabSize">Size in pixels of a tab character in call tips</param>
+			<example>
+				<code>
+scintillaControl.CallTipUseStyle(250);
+scintillaControl.CallTipShow(scintillaControl.CurrentPos, "blah blah \tblah \u0001");
+				</code>
+			</example>
+		</Method>
+		<Method name="Cancel">
+			<summary>Cancels a selection mode</summary>
+			<remarks>This is the default command boud to the ESC key</remarks>
+			<example>
+				<code>scintillaControl.Cancel();</code>
+			</example>
+		</Method>
+		<Method name="CharAt">
+			<summary>Returns the character at the specified position</summary>
+			<remarks>If position is invalid (less than 0 or greather than the document length) CharAt will return \0.</remarks>
+			<param name="position">The document position to retrieve a character.</param>
+			<returns>Character at the specified position or \0.</returns>
+			<example>
+				<code>MessageBox.Show(scintillaControl.CharAt(5).ToString());</code>
+			</example>
+		</Method>
+		<Method name="CharLeft">
+			<summary>Moves the carret position to the left</summary>
+			<remarks>This is the default behavior of pressing the LEFT ARROW when ScintillaControl has focus</remarks>
+			<example>
+				<code>scintillaControl.CharLeft();</code>
+			</example>
+		</Method>
+		
+		<Method name="CharLeftExtended">
+			<summary>Moves the carret position to the left and extends the selection</summary>
+			<remarks>This is the default behavior of pressing the SHIFT + LEFT ARROW when ScintillaControl has focus</remarks>
+			<example>
+				<code>scintillaControl.CharLeftExtended();</code>
+			</example>
+		</Method>
+
+		<Method name="CharLeftRectExtend">
+			<summary>Moves the carret position to the left and extends the selection in a rectangular selection mode</summary>
+			<remarks>This is the default behavior of pressing the ALT + SHIFT + LEFT ARROW when ScintillaControl has focus</remarks>
+			<example>
+				<code>scintillaControl.CharLeftRectExtend();</code>
+			</example>
+		</Method>
+		<Method name="CharRight">
+			<summary>Moves the carret position to the Right</summary>
+			<remarks>This is the default behavior of pressing the RIGHT ARROW when ScintillaControl has focus</remarks>
+			<example>
+				<code>scintillaControl.CharRight();</code>
+			</example>
+		</Method>
+		
+		<Method name="CharRightExtended">
+			<summary>Moves the carret position to the Right and extends the selection</summary>
+			<remarks>This is the default behavior of pressing the SHIFT + RIGHT ARROW when ScintillaControl has focus</remarks>
+			<example>
+				<code>scintillaControl.CharRightExtended();</code>
+			</example>
+		</Method>
+
+		<Method name="CharRightRectExtend">
+			<summary>Moves the carret position to the Right and extends the selection in a rectangular selection mode</summary>
+			<remarks>This is the default behavior of pressing the ALT + SHIFT + RIGHT ARROW when ScintillaControl has focus</remarks>
+			<example>
+				<code>scintillaControl.CharRightRectExtend();</code>
+			</example>
+		</Method>
+		<Method name="ChooseCaretX">
+			<summary>Sets the "remembered" caret X position to the current position.</summary>
+			<remarks>
+				Scintilla remembers the x value of the last position horizontally moved to explicitly by the user and this value is then used 
+				when moving vertically such as by using the up and down keys. This method sets the current x position of the caret as the remembered 
+				value.
+			</remarks>
+			<example>
+				<code>scintillaControl.ChooseCaretX();</code>
+			</example>
+		</Method>
+		<Method name="Clear">
+			<summary>Clears (deletes) the selection</summary>
+			<remarks>
+				This is similar to <see cref="Scintilla.ScintillaControl.Cut"/> but does not touch the clipboard. This is the default
+				command bound to the delete key.
+			</remarks>
+			<example>
+				<code>scintillaControl.Clear();</code>
+			</example>
+		</Method>
+		<Method name="ClearAll">
+			<summary>Deletes all text from the document</summary>
+			<remarks>If the document is read only this has no effect</remarks>
+			<example>
+				<code>scintillaControl.ClearAll();</code>
+			</example>
+		</Method>
+		<Method name="ClearAllCmdKeys">
+			<summary>This command removes all keyboard command mapping by setting an empty mapping table.</summary>
+			<remarks>This includes all built in command mappings like arrows and backspace.</remarks>
+			<example>
+				<code>scintillaControl.ClearAllCmdKeys();</code>
+			</example>
+		</Method>
+		<Method name="ClearCmdKey">
+			<summary>Removes any command mapping to the keycode</summary>
+			<remarks>This makes the given key definition do nothing</remarks>
+			<param name="keyDefinition">Keyboard command to clear any bound Scintilla command </param>
+			<example>
+				This shows how you can disable the behavior of the backspace key.
+				<code>scintillaControl.ClearCmdKey(Keys.Back);</code>
+			</example>
+		</Method>
+		<Method name="ClearDocumentStyle">
+			<summary>Clears all styling information and resets the folding state</summary>
+			<remarks>When wanting to completely restyle the document, for example after choosing a lexer, ClearDocumentStyle can be used to clear all styling information and reset the folding state.</remarks>
+			<example>
+				<code>scintillaControl.ClearDocumentStyle();</code>
+			</example>
+		</Method>
+		<Method name="ClearRegisteredImages">
+			<summary>Clears the set of registered images for use with AutoComplete lists</summary>
+			<remarks>
+				Autocompletion list items may display an image as well as text. Each image is first registered with an integer type. 
+				Then this integer is included in the text of the list separated by a '?' from the text. For example, "fclose?2 fopen" 
+				displays image 2 before the string "fclose" and no image before "fopen". The images are in XPM format as is described 
+				for <see cref="Scintilla.ScintillaControl.MarkerDeginePixMap"/> The set of registered images can be cleared with 
+				ClearRegisteredImages and the '?' separator changed with <see cref="Scintilla.ScintillaControl.AutoCTypeSeparator"/>
+			</remarks>
+			<example>
+				<code>scintillaControl.ClearRegisteredImages()</code>
+			</example>
+		</Method>
+		<Method name="Colorize">
+			<summary>Requests styling be performed</summary>
+			<remarks>
+				This requests the current lexer or the container (if the lexer is set to SCLEX_CONTAINER) to style the 
+				document between start and end. If endPos is -1, the document is styled from start to the end. 
+				If the "fold" property is set to "1" and your lexer or container supports folding, fold levels are also 
+				set. This message causes a redraw.
+			</remarks>
+			<param name="start">Start position of the document to style</param>
+			<param name="end">End position of the document to style</param>
+			<example>
+				This styles the entire document
+				<code>scintillaControl.Colorize(-1, -1);</code>
+			</example>
+		</Method>
+		<Method name="Column">
+			<summary>Returns the column number of a position pos within the document taking the width of tabs into account</summary>
+			<remarks>
+				This returns the column number of the last tab on the line before pos, plus the number of characters between the last tab and pos. 
+				If there are no tab characters on the line, the return value is the number of characters up to the position on the line. In both 
+				cases, double byte characters count as a single character. This is probably only useful with monospaced fonts.
+			</remarks>
+			<param name="pos">Position to get the column # of</param>
+			<returns>Column # of the position pos</returns>
+			<example>
+				<code>
+private void scintillaControl_UpdateUI(object sender, UpdateUIEventArgs e)
+{
+	lblColumn.Text = scintillaControl.Column(scintillaControl.CurrentPos).ToString();
+}
+				</code>
+			</example>
+		</Method>
+		<Method name="Copy">
+			<summary>Copies selected text to the system clipboard</summary>
+			<remarks>
+				<para>If you need a "can copy" or "can cut", use SelectionStart - SelectionEnd, which will be non-zero if you can copy or cut to the clipboard.</para>
+				<para>On X, the clipboard is asynchronous and may require several messages between the destination and source applications.</para>
+				<para>This is the default command bound to CTRL+C</para>
+			</remarks>
+			<example>
+				<code>scintillaControl.Copy()</code>
+			</example>
+		</Method>
+		<Method name="CopyRange">
+			<summary>Copies a range of text from the document to the system clipboard</summary>
+			<param name="start">Start position of range to copy</param>
+			<param name="end">End position of range to copy</param>
+			<example>
+				<code>scintillaControl.CopyRange(10, 20);</code>
+			</example>
+		</Method>
+		<Method name="CopyText">
+			<summary>Copies a supplied piece of text to the system clipboard</summary>
+			<param name="text">Text to be copied to the clipboard</param>
+			<example>
+				<code>scintillaControl.CopyText("Here is some text to be copied");</code>
+			</example>
+		</Method>
+		<Method name="CreateDocument">
+			<summary>Creates a new, empty document and returns a pointer to it.</summary>
+			<remarks>
+				This document is not selected into the editor and starts with a reference count of 1. This means that you have ownership of 
+				it and must either reduce its reference count by 1 after using <see cref="Scintilla.ScintillaControl.SetDocPointer"/> so that 
+				the Scintilla window owns it or you must make sure that you reduce the reference count by 1 with 
+				<see cref="Scintilla.ScintillaControl.ReleaseDocument"/> before you close the application to avoid memory leaks.
+			</remarks>
+			<returns>Pointer to an emtpy Scintilla document</returns>
+			<example>
+				<code>
+private IntPtr altDoc;
+private void swapDoc()
+{
+	//	Save off the current document reference and up the ref count so that 
+	//	Scintilla doesn't kill the doc when we replace it
+	IntPtr oldDoc = scintillaControl.DocPointer;
+	scintillaControl.AddRefDocument(oldDoc);
+
+	//	This isn't technically necessary as Scintilla will just create a new
+	//	document if we pass it a 0
+	if(altDoc == IntPtr.Zero)
+		altDoc = scintillaControl.CreateDocument();
+
+	//	Swap docs
+	scintillaControl.DocPointer = altDoc;
+
+	//	We have to release the ref count on this doc becuase the 
+	//	DocPointer setter increases it by 1.
+	scintillaControl.ReleaseDocument(altDoc);
+
+	//	And store off the oldDoc's reference
+	altDoc = oldDoc;
+}				</code>
+			</example>
+		</Method>
+		<Method name="Cut">
+			<summary>Performs a standard Cut action to the clipboard.</summary>
+			<remarks>
+				<para>
+					This method does nothing if the document is <see cref="Scintilla.ScintillaControl.IsReadOnly">Read-Only</see>
+				</para>
+				<para>This is the default command bound to CTRL+X</para>
+			</remarks>
+			<example>
+				<code>scintillaControl.Cut();</code>
+			</example>
+		</Method>
+		<Method name="DeleteBack">
+			<summary>Deletes a selection or the character before the current position</summary>
+			<remarks>This is the default action bound to the backspace key</remarks>
+			<example>
+				<code>scintillaControl.DeleteBack();</code>
+			</example>
+		</Method>
+		<Method name="DeleteBackNotLine">
+			<summary>DeleteBack without deleting EOL characters</summary>
+			<summary>
+				This behaves like <see cref="Scintilla.ScintillaControl.DeleteBack"/> however if the current carret position is at the
+				begining of a line this command does nothing.
+			</summary>
+			<example>
+				<code>scintillaControl.DeleteBackNotLine();</code>
+			</example>
+		</Method>
+		<Method name="DelLineLeft">
+			<summary>Deletes from the current position to the begining of the line</summary>
+			<remarks>This is the default command bound to CTRL+SHIFT+BACKSPACE</remarks>
+			<example>
+				<code>scintillaControl.DelLineLeft();</code>
+			</example>
+		</Method>
+		<Method name="DelLineRight">
+			<summary>Deletes from the current position to the end of the line</summary>
+			<remarks>This is the default command bound to CTRL+SHIFT+DELETE</remarks>
+			<example>
+				<code>scintillaControl.DelLineRight();</code>
+			</example>
+		</Method>
+		<Method name="DelWordLeft">
+			<summary>Deletes from the current position to the next word character to the left</summary>
+			<remarks>This is the default command bound to CTRL+BACKSPACE</remarks>
+			<example>
+				<code>scintillaControl.DelWordLeft();</code>
+			</example>
+		</Method>
+		<Method name="DelWordRight">
+			<summary>Deletes from the current position to the next word character to the right</summary>
+			<remarks>This is the default command bound to CTRL+DELETE</remarks>
+			<example>
+				<code>scintillaControl.DelWordRight();</code>
+			</example>
+		</Method>
+		<Method name="DocLineFromVisible">
+			<summary>Returns a document line index from a visible line index.</summary>
+			<remarks>
+				When some lines are hidden, then a particular line in the document may be displayed at a different position to its document position. 
+				This message returns the document line number that corresponds to a display line (counting the display line of the first line in the 
+				document as 0). If displayLine is less than or equal to 0, the result is 0. If displayLine is greater than or equal to the number of 
+				displayed lines, the result is the number of lines in the document.
+			</remarks>
+			<param name="lineDisplay">Visible line index</param>
+			<returns>True Document line index</returns>
+			<example>
+				<code>MessageBox.Show(scintillaControl.DocLineFromVisibleLine(2).ToString());</code>
+			</example>
+		</Method>
+		<Method name="DocPointer">
+			<summary>Returns a pointer to the document currently loaded in the Scintilla Control</summary>
+			<returns>Pointer to the document currently loaded in the Scintilla Control</returns>
+			<example>
+				<code>
+private IntPtr altDoc;
+private void swapDoc()
+{
+	//	Save off the current document reference and up the ref count so that 
+	//	Scintilla doesn't kill the doc when we replace it
+	IntPtr oldDoc = scintillaControl.DocPointer;
+	scintillaControl.AddRefDocument(oldDoc);
+
+	//	This isn't technically necessary as Scintilla will just create a new
+	//	document if we pass it a 0
+	if(altDoc == IntPtr.Zero)
+		altDoc = scintillaControl.CreateDocument();
+
+	//	Swap docs
+	scintillaControl.DocPointer = altDoc;
+
+	//	We have to release the ref count on this doc becuase the 
+	//	DocPointer setter increases it by 1.
+	scintillaControl.ReleaseDocument(altDoc);
+
+	//	And store off the oldDoc's reference
+	altDoc = oldDoc;
+}
+				</code>
+			</example>
+		</Method>
+		<Method name="DocumentEnd">
+			<summary>Places the carret at the end of the document</summary>
+			<remarks>This is the default command bound to CTRL+END</remarks>
+			<example>
+				<code>scintillaControl.DocumentEnd();</code>
+			</example>
+		</Method>
+		<Method name="DocumentEndExtend">
+			<summary>Places the carret at the end of the document extending the selection</summary>
+			<remarks>This is the default command bound to CTRL+SHIFT+END</remarks>
+			<example>
+				<code>scintillaControl.DocumentEndExtend();</code>
+			</example>
+		</Method>
+
+		<Method name="DocumentStart">
+			<summary>Places the carret at the start of the document</summary>
+			<remarks>This is the default command bound to CTRL+HOME</remarks>
+			<example>
+				<code>scintillaControl.DocumentStart();</code>
+			</example>
+		</Method>
+		<Method name="DocumentStartExtend">
+			<summary>Places the carret at the start of the document extending the selection</summary>
+			<remarks>This is the default command bound to CTRL+SHIFT+HOME</remarks>
+			<example>
+				<code>scintillaControl.DocumentStartExtend();</code>
+			</example>
+		</Method>
+	</Methods>
+	<Events>
+		<Event nanme="AutoCSelection">
+			<summary>This event is fired when the user has selected an item in an autocompletion list.</summary>
+			<remarks>
+				The event is fired before the selection is inserted. Automatic insertion can be cancelled 
+				by calling <see cref="Scintilla.ScintillaControl.AutoCCancel"/> before returning from the event. 
+			</remarks>
+			<example>
+				<code>
+private void scintillaControl_AutoCSelection(object sender, AutoCSelectionEventArgs e)
+{
+    // Note that this will effectively cancel the AutoCompletion
+    MessageBox.Show(string.Format("Word Start Position {0}, Text \"{1}\" chosen.", e.WordStartPosition, e.Text));
+}
+				</code>
+			</example>		  
+		</Event>
+		
+		<Event name="CallTipClick">
+			<summary>This event is fired when the user clicks on a calltip.</summary>
+			<remarks>
+				This notification can be used to display the next function prototype when a function name 
+				is overloaded with different arguments. The <see cref="Scintilla.CallTipClickEventArgs.Position"/> 
+				field is set to 1 if the click is in an up arrow, 2 if in a down arrow, and 0 if elsewhere.
+			</remarks>
+			<example> This example assumes a calltip is already active
+				<code>
+int position = 0;
+string[] callipList = { "Hi", "Hello", "Wassup?", "OK", "Cancel", "Abort", "Retry", "Cancel" };
+
+private void scintillaControl_CallTipClick(object sender, CallTipClickEventArgs e)
+{
+    if(e.Position == 1)
+    {
+        position++;
+        if(position == callipList.Length)
+            position = 0;
+    }
+    else if (e.Position == 2)
+    {
+        position--;
+        if(position &lt; 0)
+            position = callipList.Length - 1;
+    }
+
+    string s = "{0}   \u0001 {1} of {2} \u0002";
+    s = string.Format(s, callipList[position], position + 1, callipList.Length);
+
+    scintillaControl.CallTipCancel();
+    scintillaControl.CallTipShow(scintillaControl.CurrentPos, s);
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="CharAdded">
+			<summary>This event is fired when the user types an ordinary text character </summary>
+			<remarks>
+				This event is fired when the user types an ordinary text character (as opposed to a command character) 
+				that is entered into the text. The container can use this to decide to display a call tip or an 
+				auto completion list. The character is in <see cref="Scintilla.CharAddedEventArgs.Ch"/>. This 
+				event is fired before the character has been styled so processing that depends on styling should 
+				instead be performed in the Scintilla.UpdateUI event.
+			</remarks>
+			<seealso cref="Scintilla.CharAddedEventArgs"/>
+			<example>This is the logic that ScintillaNET uses to perform Smart Indenting
+				<code>
+private void scintillaControl_CharAdded(object sender, CharAddedEventArgs e)
+{
+    if (e.Ch == '\n')
+    {
+        int curLine = scintillaControl.CurrentPos;
+        curLine = scintillaControl.LineFromPosition(curLine);
+        int previousIndent = scintillaControl.LineIndentation(curLine - 1);
+        scintillaControl.IndentLine(curLine, previousIndent);
+    }
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="DwellEnd">
+			<summary>
+				Event is fired after a <see cref="Scintilla.ScintillaControl.DwellStart"/> and the mouse is moved 
+				or other activity such as key press indicates the dwell is over. 
+			</summary>
+			<seealso cref="Scintilla.ScintillaControl.DwellStart"/>
+			<example>
+				<code>
+private void scintillaControl_DwellEnd(object sender, DwellEndEventArgs e)
+{
+    scintillaControl.CallTipCancel();
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="DwellStart">
+			<summary>Event is fired when the user keeps the mouse in one position for the dwell period.</summary>
+			<seealso cref="Scintilla.ScintillaControl.MouseDwellTime"/>
+			<seealso cref="Scintilla.ScintillaControl.DwellEnd"/>
+			<example> 
+				This example shows how you can show a call tip for a hovered word.
+				<code>
+private void scintillaControl_DwellStart(object sender, DwellStartEventArgs e)
+{
+    if (e.Position &lt; 0)
+        return;
+
+    TextRange tr = new TextRange();
+    int start = scintillaControl.WordStartPosition(e.Position, false);
+    int end = scintillaControl.WordEndPosition(e.Position, false);
+    string txt = scintillaControl.Range(start, end).Text;
+    
+    scintillaControl.CallTipShow(start, txt);
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="HotspotClick">
+			<summary>This event is generated when the user clicks or on text that is in a style with the hotspot attribute set.</summary>
+			<remarks>
+				This notification can be used to link to variable definitions or web pages. The
+				<see cref="Scintilla.HotspotClickEventArgs.Position"/> field is set to the text 
+				position of the click and the <see cref="Scintilla.HotspotClickEventArgs.Modifiers"/>
+				field set to the modifier keys held down in a similar 
+				manner to the <see cref="Scintilla.ScintillaControl.SCKey"/> event.
+			</remarks>
+			<seealso cref="Scintilla.ScintillaControl.HotspotDoubleClick"/>
+			<example> This example shows how you could treat a HotSpot like a hyperlink.
+			This assumes that the entire region styled as a hotspot is a url.
+				<code>
+private void scintillaControl_HotspotClick(object sender, HotspotClickEventArgs e)
+{
+    if(e.Position &lt; 0)
+        return;
+
+    string url = string.Empty;
+
+    //	This is the style value for the character clicked. We
+    //	know that this is the hotspot style.
+    int hotspotStyle = scintillaControl.StyleAt(e.Position);
+	
+    //	We keep builinging our Url to the left of the clicked position
+    //	until we run out of characters with the hotspot style
+    int pos = e.Position;
+    while(scintillaControl.StyleAt(pos) == hotspotStyle &amp;&amp; pos >=0)
+    {
+        url = scintillaControl.CharAt(pos) + url;
+        pos--;
+    }
+
+    //	Now we build the Url to the right until we run out 
+    //	of characters with the hotspot style
+    pos = e.Position + 1;
+    while(scintillaControl.StyleAt(pos) == hotspotStyle)
+    {
+        url += scintillaControl.CharAt(pos);
+        pos++;
+    }
+
+    //	Now we have the text of the entire hotspot region,
+    //	assuming it's a url we launch it in the defualt browser
+    System.Diagnostics.Process.Start(url);
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="HotspotDoubleClick">
+			<summary>This event is generated when the user double clicks or on text that is in a style with the hotspot attribute set.</summary>
+			<remarks>
+				This notification can be used to link to variable definitions or web pages. The
+				<see cref="Scintilla.HotspotDoubleClickEventArgs.Position"/> field is set to the text 
+				position of the click and the <see cref="Scintilla.HotspotDoubleClickEventArgs.Modifiers"/>
+				field set to the modifier keys held down in a similar 
+				manner to the <see cref="Scintilla.ScintillaControl.SCKey"/> event.
+			</remarks>
+			<seealso cref="Scintilla.ScintillaControl.HotspotClick"/>
+		</Event>
+		
+		<Event name="MacroRecord">
+			<summary>When macro recording enabled this event is fired each time a recordable change occurs.</summary>
+			<remarks>
+				The <see cref="Scintilla.ScintillaControl.StartRecord"/> and <see cref="Scintilla.ScintillaControl.StopRecord"/> methods 
+				enable and disable macro recording. When enabled, each time a recordable change occurs, the MacroRecord event is sent to the 
+				container. It is up to the container to record the action.
+			</remarks>
+			<seealso cref="Scintilla.ScintillaControl.StartRecord"/>
+			<seealso cref="Scintilla.ScintillaControl.StopRecord"/>
+			<example>
+				<code>
+private List&lt;Message&gt; recordedMessages = new List&lt;Message&gt;();
+private void scintillaControl_MacroRecord(object sender, MacroRecordEventArgs e)
+{
+    recordedMessages.Add(e.Message);
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="MarginClick">
+			<summary>This is fired when the mouse was clicked inside a margin that was marked as sensitive.</summary>
+			<remarks>
+				This is fired when the mouse was clicked inside a margin that was marked as sensitive with 
+				<see cref="Scintilla.ScintillaControl.MarginSensitiveN(int, bool)"/>. This can be used to perform folding 
+				or to place breakpoints.
+			</remarks>
+			<seealso cref="Scintilla.ScintillaControl.MarginSensitiveN(int, bool)"/>
+			<seealso cref="Scintilla.ScintillaControl.MarginSensitiveN(int)"/>
+			<example>
+				<code>
+private void scintillaControl_MarginClick(object sender, MarginClickEventArgs e)
+{
+    int clickedLine = scintillaControl.LineFromPosition(e.Position);
+    if (scintillaControl.MarkerGet(clickedLine) == 0)
+        scintillaControl.MarkerAdd(clickedLine, 1);
+    else
+        scintillaControl.MarkerDelete(clickedLine, 1);	
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="Modified">
+			<summary>This event is fired when the text or styling of the document changes or is about to change.</summary>
+			<remarks>
+				You can set a mask for the notifications that are sent to the container with <see cref="Scintilla.ScintillaControl.ModEventMask"/>. 
+				The ModifiedEventArgs contains information about what changed, how the change occurred and 
+				whether this changed the number of lines in the document. No modifications may be performed 
+				while in a Modified event.
+			</remarks>
+			<example>
+				<code>
+private void scintillaControl_Modified(object sender, ModifiedEventArgs e)
+{
+    // This would be really anoying...
+    MessageBox.Show("Something was modified");
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="ModifyAttemptRO">
+			<summary>Fired when the user tries to change the text in readonly mode.</summary>
+			<remarks>When in read-only mode, this event is fired if the user tries to change the text.</remarks>
+			<seealso cref="Scintilla.ScintillaControl.IsReadOnly"/>
+			<example>
+				<code>
+[System.Runtime.InteropServices.DllImport("User32.dll")]
+private static extern bool MessageBeep(uint uType);
+ 
+private void scintillaControl_ModifyAttemptRO(object sender, ModifyAttemptROEventArgs e)
+{
+    MessageBeep(-1);   
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="NeedShown">
+			<summary>This event is fired when Scintilla has determined that a range of lines that is currently invisible should be made visible.</summary>
+			<remarks>
+				An example of where this may be needed is if the end of line of a contracted fold point is deleted. 
+				This event is fired in case the container wants to make the line visible in some unusual way such as 
+				making the whole document visible. Most containers will just ensure each line in the range is visible 
+				by calling <see cref="Scintilla.ScintillaControl.EnsureVisible"/> . The 
+				<see cref="Scintilla.NeedShownEventArgs.Position"/> and <see cref="Scintilla.NeedShownEventArgs.Length"/>
+				<see cref="Scintilla.NeedShownEventArgs"/>indicate the range of the document that should be made visible. 
+			</remarks>
+			<seealso cref="Scintilla.ScintillaControl.LineFromPosition"/>
+			<seealso cref="Scintilla.ScintillaControl.EnsureVisible"/>
+			<example>
+				<code>
+private void scintillaControl_NeedShown(object sender, NeedShownEventArgs e)
+{
+    int firstLine = scintillaControl.LineFromPosition(e.Position);
+    int lastLine = scintillaControl.LineFromPosition(e.Position + e.Length - 1);
+    for(int line = firstLine; line &lt; lastLine; line++)
+        scintillaControl.EnsureVisible(line);
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="Painted">
+			<summary>Fires when Painting has just been done.</summary>
+			<remarks>
+				This event is useful when you want to update some other widgets based on a change in Scintilla, 
+				but want to have the paint occur first to appear more responsive.
+			</remarks>
+		</Event>
+		
+		<Event name="SavePointLeft">
+			<summary>Fired when the Save point is left (document is dirtied).</summary>
+			<remarks>
+				This is event is fired when the save point is left, allowing the container to toggle a "document dirty" 
+				indicator and change its menus.
+			</remarks>
+			<example> 
+				This example shows how a typical notepad style indicator, displaying a * when the document is 
+				dirty can be performed.
+				<code>
+		private void scintillaControl_SavePointLeft(object sender, SavePointLeftEventArgs e)
+		{
+		    if (!Text.EndsWith(" *"))
+		        Text += " *";
+		}
+				</code>
+			</example>
+			<seealso cref="T:Scintilla.SavePointReached"/>
+		</Event>
+		
+		<Event name="SavePointReached">
+			<summary>Fired when the Save point is entered.</summary>
+			<remarks>
+				This is event is fired when the save point is entered, allowing the container to toggle a "document dirty" 
+				indicator and change its menus.
+			</remarks>
+			<seealso cref="T:Scintilla.SavePointLeft"/>
+			<example>This example shows how a typical notepad style indicator, displaying a * when the document is dirty can be performed.
+				<code>
+private void scintillaControl_SavePointReached(object sender, SavePointReachedEventArgs e)
+{
+    if (Text.EndsWith(" *"))
+        Text = Text.Substring(0, Text.Length - 2)
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="SCDoubleClick">
+			<summary>The mouse button was double clicked in editor.</summary>
+			<remarks>
+				The position field is set to the text position of the double click and the line field is 
+				set to the line of the double click.
+			</remarks>
+			<example>
+				<code>
+private void scintillaControl_SCDoubleClick(object sender, SCDoubleClickEventArgs e)
+{
+    string s = string.Format("DoubleClick at Position={0}, Line={1}", e.Position, e.Line);
+    MessageBox.Show(s);
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="SCKey">
+			<summary>Reports all keys pressed but not consumed by Scintilla.</summary>
+			<remarks>
+				Reports all keys pressed but not consumed by Scintilla. Used on GTK+ because of some problems 
+				with keyboard focus and is not sent by the Windows version. SCNotification.ch holds the key code and 
+				SCNotification.modifiers holds the modifiers. This notification is sent if the modifiers include 
+				ALT or CTRL and the key code is less than 256.
+			</remarks>
+		</Event>
+		
+		<Event name="SCZoom">
+			<summary>This event is fired when the document is Zoomed.</summary>
+			<remarks>
+				This event is fired when the user zooms the display using the keyboard or the 
+				<see cref="Scintilla.ScintillaControl.Zoom"/> is changed. This event can be used to 
+				recalculate positions, such as the width of the line number margin to maintain sizes 
+				in terms of characters rather than pixels.
+			</remarks>
+			<seealso cref="Scintilla.ScintillaControl.Zoom"/>
+			<example>
+				<code>
+private void scintillaControl_Zoom(object sender, SCZoomEventArgs e)
+{
+    lblZoomLevel.Text = scintillaControl.Zoom.ToString();
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="StyleNeeded">
+			<summary>
+				This event is fired when text is about to be displayed or printed that requires styling.
+			</summary>
+			<remarks>
+				If you used <c> <see cref="T:Scintilla.Enums.Lexer" /> = <see cref="F:Scintilla.Enums.Lexer.Container"/></c> 
+				 to make the container act as the lexer, you will receive this notification when Scintilla is about to display or print 
+				 text that requires styling. You are required to style the text from the line that contains the position returned by 
+				<see cref="Scintilla.ScintillaControl.EndStyled"/> up to the position passed in <see cref="Scintilla.StyleNeededEventArgs.Position"/>.
+			</remarks>
+			<seealso cref="Scintilla.StyleNeededEventArgs"/>
+			<example>
+				<code>
+private void scintillaControl_StyleNeeded(object sender, StyleNeededEventArgs e)
+{
+    int startPos = scintillaControl.EndStyled;
+    int lineNumber = scintillaControl.LineFromPosition(startPos);
+    startPos = scintillaControl.PositionFromLine(lineNumber);
+    MyStyleRoutine(startPos, e.Position);
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="UpdateUI">
+			<summary>Fired when Either the text or styling of the document has changed or the selection range has changed.</summary>
+			<remarks>During this event would be a good time to update any container UI elements that depend on document or view state.</remarks>
+			<example> 
+				This example shows how one might track and display the current Carret Position. lblTextPosition
+				is a Status Bar label.
+				<code>
+private void scintillaControl_UpdateUI(object sender, UpdateUIEventArgs e)
+{
+    int pos = scintillaControl.GetCurrentPos();
+    int col = scintillaControl.Column(pos);
+    int line = scintillaControl.LineFromPosition(pos);
+    int ch = pos - scintillaControl.PositionFromLine(line);			
+    lblTextPosition.Text = string.Format("LN {0}, COL {1}, CH {2}, POS {3}", line, col, ch, pos);
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="UriDropped">
+			<summary>Indicates that the user has dragged a URI such as a file name or Web address onto Scintilla</summary>
+			<remarks>
+				Only on the GTK+ version. Indicates that the user has dragged a URI such as a file name or 
+				Web address onto Scintilla. The container could interpret this as a request to open the file. 
+				The Text field of UriDroppedEventArgs points at the URI text.
+			</remarks>
+			<example>
+				<code>
+private void scintillaControl_UriDropped(object sender, UriDroppedEventArgs e)
+{
+    using(FileStream s = new FileStream(e.Text, FileMode.Open,FileAccess.Read))
+        using(StreamReader sr = new StreamReader(s))
+            scintillaControl.Text = sr.ReadToEnd();
+}
+				</code>
+			</example>
+		</Event>
+		
+		<Event name="UserListSelection">
+			<summary>Fires when the user has selected an item in a user list.</summary>
+			<example>
+				<code>
+private void scintillaControl_UserListSelection(object sender, UserListSelectionEventArgs e)
+{
+    scintillaControl.AddText(e.Text);
+}
+				</code>
+			</example>
+		</Event>	
+	</Events>
+</root>

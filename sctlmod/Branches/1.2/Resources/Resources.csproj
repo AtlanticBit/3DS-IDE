@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{76CB6998-B26B-48B4-9486-162C9FE6C0B8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Resources</RootNamespace>
+    <AssemblyName>Resources</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <None Include="DownloadResources.bat" />
+    <None Include="languages.iface" />
+    <None Include="Scintilla.iface" 
+    <None Include="SciTEConfigFiles\abbrev.properties" />
+    <None Include="SciTEConfigFiles\ada.properties" />
+    <None Include="SciTEConfigFiles\asm.properties" />
+    <None Include="SciTEConfigFiles\asn1.properties" />
+    <None Include="SciTEConfigFiles\au3.properties" />
+    <None Include="SciTEConfigFiles\ave.properties" />
+    <None Include="SciTEConfigFiles\baan.properties" />
+    <None Include="SciTEConfigFiles\blitzbasic.properties" />
+    <None Include="SciTEConfigFiles\bullant.properties" />
+    <None Include="SciTEConfigFiles\caml.properties" />
+    <None Include="SciTEConfigFiles\cmake.properties" />
+    <None Include="SciTEConfigFiles\conf.properties" />
+    <None Include="SciTEConfigFiles\cpp.properties" />
+    <None Include="SciTEConfigFiles\csound.properties" />
+    <None Include="SciTEConfigFiles\css.properties" />
+    <None Include="SciTEConfigFiles\d.properties" />
+    <None Include="SciTEConfigFiles\eiffel.properties" />
+    <None Include="SciTEConfigFiles\erlang.properties" />
+    <None Include="SciTEConfigFiles\escript.properties" />
+    <None Include="SciTEConfigFiles\flagship.properties" />
+    <None Include="SciTEConfigFiles\forth.properties" />
+    <None Include="SciTEConfigFiles\fortran.properties" />
+    <None Include="SciTEConfigFiles\freebasic.properties" />
+    <None Include="SciTEConfigFiles\global.properties" />
+    <None Include="SciTEConfigFiles\html.properties" />
+    <None Include="SciTEConfigFiles\inno.properties" />
+    <None Include="SciTEConfigFiles\kix.properties" />
+    <None Include="SciTEConfigFiles\latex.properties" />
+    <None Include="SciTEConfigFiles\lisp.properties" />
+    <None Include="SciTEConfigFiles\lot.properties" />
+    <None Include="SciTEConfigFiles\lout.properties" />
+    <None Include="SciTEConfigFiles\lua.properties" />
+    <None Include="SciTEConfigFiles\matlab.properties" />
+    <None Include="SciTEConfigFiles\metapost.properties" />
+    <None Include="SciTEConfigFiles\mmixal.properties" />
+    <None Include="SciTEConfigFiles\nncrontab.properties" />
+    <None Include="SciTEConfigFiles\nsis.properties" />
+    <None Include="SciTEConfigFiles\opal.properties" />
+    <None Include="SciTEConfigFiles\others.properties" />
+    <None Include="SciTEConfigFiles\pascal.properties" />
+    <None Include="SciTEConfigFiles\perl.properties" />
+    <None Include="SciTEConfigFiles\pov.properties" />
+    <None Include="SciTEConfigFiles\ps.properties" />
+    <None Include="SciTEConfigFiles\purebasic.properties" />
+    <None Include="SciTEConfigFiles\python.properties" />
+    <None Include="SciTEConfigFiles\rebol.properties" />
+    <None Include="SciTEConfigFiles\ruby.properties" />
+    <None Include="SciTEConfigFiles\SciTE.properties" />
+    <None Include="SciTEConfigFiles\SciTEGlobal.properties" />
+    <None Include="SciTEConfigFiles\scriptol.properties" />
+    <None Include="SciTEConfigFiles\smalltalk.properties" />
+    <None Include="SciTEConfigFiles\specman.properties" />
+    <None Include="SciTEConfigFiles\spice.properties" />
+    <None Include="SciTEConfigFiles\sql.properties" />
+    <None Include="SciTEConfigFiles\tcl.properties" />
+    <None Include="SciTEConfigFiles\tex.properties" />
+    <None Include="SciTEConfigFiles\vb.properties" />
+    <None Include="SciTEConfigFiles\verilog.properties" />
+    <None Include="SciTEConfigFiles\vhdl.properties" />
+    <None Include="SciTEConfigFiles\yaml.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dictionary.txt" />
+    <Content Include="Overrides.txt" />
+    <Content Include="SciLexer.dll" />
+    <Content Include="ScintillaNET.language.xml" />
+  </ItemGroup>
+</Project>
