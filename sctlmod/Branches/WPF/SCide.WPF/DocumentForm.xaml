@@ -1,0 +1,41 @@
+﻿<ad:LayoutDocument xmlns:my="clr-namespace:SCide.WPF" x:Class="SCide.WPF.DocumentForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+			 xmlns:sn="http://scintillanet.codeplex.com"
+			 xmlns:ad="http://avalondock.codeplex.com">
+	<Grid>
+		<my:SaveFileDialog x:Name="saveFileDialog" Filter="All Files (*.*)|*.*" />
+		<sn:ScintillaWPF HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="scintilla" ModifiedChanged="scintilla_ModifiedChanged">
+			<!-- IsVisible IsEnabled -->
+			<!--sn:Annotations AnnotationVisibility="Standard" />
+			<sn:AutoComplete AutomaticLengthEntered="True" />
+			<sn:CallTip BackColor="Red" />
+			<sn:Caret HighlightCurrentLine="True" CurrentLineBackgroundColor="#40FFFF00" />
+			<sn:Clipboard ConvertLineBreaksOnPaste="False" />
+			<sn:Commands AllowDuplicateBindings="False" />
+			<sn:ConfigurationManager Language="cs" />
+			<sn:DocumentNavigation NavigationPointTimeout="20" />
+			<sn:DropMarkers SharedStackName="SomeSharedName" />
+			<sn:EndOfLine IsEndOfLineVisible="True" />
+			<sn:Folding IsFoldingEnabled="True" MarkerScheme="CirclePlusMinus" />
+			<sn:HotspotStyle ActiveUnderline="True" />
+			<sn:Indentation BackspaceUnindents="True" />
+			<sn:Lexing Lexer="Css" /-->
+			<sn:LineWrapping VisualFlags="End" />			<!-- This is the same as SCide -->
+			<!--sn:LongLines EdgeMode="Background" /-->
+			<sn:Margins>									<!-- This is the same as SCide -->
+				<sn:Margin1 AutoToggleMarkerNumber="0" IsClickable="True" />
+				<sn:Margin2 Width="16" />
+			</sn:Margins>
+			<!--sn:Markers>
+				<sn:FolderMarker BackColor="Green" />
+				<sn:FolderOpenMarker Symbol="ShortArrow" />
+			</sn:Markers>
+			<sn:Scrolling ScrollBars="Both" /-->
+		</sn:ScintillaWPF>
+	</Grid>
+</ad:LayoutDocument>

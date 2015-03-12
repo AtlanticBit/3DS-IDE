@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ScintillaNET xmlns="http://scintillanet.codeplex.com/LanguageConfiguration.xsd">
+	<Language Name="ini">
+		<Lexer LineCommentPrefix=";" />
+		<Styles>
+			<Style Name="KEY" ForeColor="#000099" />
+			<Style Name="VALUE" ForeColor="#660066" />
+			<Style Name="ASSIGNMENT" ForeColor="OrangeRed" />
+			<Style Name="SECTION" ForeColor="#000066" Bold="True" />
+			<Style Name="COMMENT" ForeColor="#666666" />
+			<Style Name="QUOTED" ForeColor="#993333" />
+		</Styles>
+	</Language>
+</ScintillaNET>

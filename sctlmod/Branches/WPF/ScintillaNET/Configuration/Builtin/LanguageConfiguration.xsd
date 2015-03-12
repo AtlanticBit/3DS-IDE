@@ -1,0 +1,1739 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="LanguageConfiguration"
+    targetNamespace="http://scintillanet.codeplex.com/LanguageConfiguration.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://scintillanet.codeplex.com/LanguageConfiguration.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<xs:element name="ScintillaNET">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Language" maxOccurs="1" minOccurs="1">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="AutoComplete" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="List">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:token">
+														<xs:attribute name="Inherit" type="Boolean" use="optional" />
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="AutoHide" type="Boolean" use="optional">
+										<xs:annotation>
+											<xs:documentation>
+											By default, the list is cancelled if there are no viable matches
+											(the user has typed characters that no longer match a list entry).
+											If you want to keep displaying the original list, set this to false.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="AutomaticLengthEntered" type="Boolean" use="optional" />
+									<xs:attribute name="CancelAtStart" type="Boolean" use="optional" />
+									<xs:attribute name="FillUpCharacters" type="xs:string" use="optional" />
+									<xs:attribute name="ImageSeperator" type="Character" use="optional" />
+									<xs:attribute name="IsCaseSensitive" type="Boolean" use="optional" />
+									<xs:attribute name="ListSeperator" type="Character" use="optional" />
+									<xs:attribute name="MaxHeight" type="xs:unsignedInt" use="optional" />
+									<xs:attribute name="MaxWidth" type="xs:unsignedInt" use="optional" />
+									<xs:attribute name="SingleLineAccept" type="Boolean" use="optional" />
+									<xs:attribute name="StopCharacters" type="xs:string" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="CallTip" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence />
+									<xs:attribute name="BackColor" type="Color" use="optional" />
+									<xs:attribute name="ForeColor" type="Color" use="optional" />
+									<xs:attribute name="HighlightTextColor" type="Color" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Caret" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence />
+									<xs:attribute name="BlinkRate" type="BlinkRateType" use="optional" />
+									<xs:attribute name="Color" type="Color" use="optional" />
+									<xs:attribute name="CurrentLineBackgroundAlpha" type="xs:unsignedByte" default="255" use="optional" />
+									<xs:attribute name="CurrentLineBackgroundColor" type="Color" use="optional" />
+									<xs:attribute name="HighlightCurrentLine" type="Boolean" use="optional" />
+									<xs:attribute name="IsSticky" type="Boolean" use="optional" />
+									<xs:attribute name="Style" type="CaretStyleType" use="optional" />
+									<xs:attribute name="Width" type="xs:integer" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Clipboard" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence />
+									<xs:attribute name="Clipboard" type="Boolean" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Commands" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Binding" maxOccurs="unbounded" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence />
+												<xs:attribute name="Key" type="KeysType" use="required" />
+												<xs:attribute name="Modifier" type="KeyModifierType" use="required" />
+												<xs:attribute name="Command" type="BindableCommandType" use="required" />
+												<xs:attribute name="ReplaceCurrent" type="Boolean" use="required" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Inherit" type="Boolean" default="False" use="optional" />
+									<xs:attribute name="AllowDuplicateBindings" type="Boolean" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="EndOfLine" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence />
+									<xs:attribute name="IsVisible" type="Boolean" use="optional" />
+									<xs:attribute name="Mode" type="EndOfLineModeType" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Folding" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence />
+									<xs:attribute name="Flags" type="FoldFlagType" use="optional" />
+									<xs:attribute name="IsEnabled" type="Boolean" use="optional" />
+									<xs:attribute name="MarkerScheme" type="FoldMarkerSchemeType" use="optional" />
+									<xs:attribute name="UseCompactFolding" type="Boolean" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Hotspot" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence />
+									<xs:attribute name="ActiveBackColor" type="Color" use="optional" />
+									<xs:attribute name="ActiveForeColor" type="Color" use="optional" />
+									<xs:attribute name="ActiveUnderline" type="Boolean" use="optional" />
+									<xs:attribute name="SingleLine" type="Boolean" use="optional" />
+									<xs:attribute name="UseActiveBackColor" type="Boolean" use="optional" />
+									<xs:attribute name="UseActiveForeColor" type="Boolean" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Indentation" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence />
+									<xs:attribute name="BackspaceUnindents" type="Boolean" use="optional" />
+									<xs:attribute name="IndentWidth" type="xs:unsignedInt" use="optional" />
+									<xs:attribute name="ShowGuides" type="Boolean" use="optional" />
+									<xs:attribute name="TabIndents" type="Boolean" use="optional" />
+									<xs:attribute name="TabWidth" type="xs:unsignedInt" use="optional" />
+									<xs:attribute name="UseSpaces" type="Boolean" default="False" use="optional" />
+									<xs:attribute name="SmartIndentType" type="SmartIndentType" default="None" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Indicators" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Indicator" maxOccurs="unbounded" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence />
+												<xs:attribute name="Index" type="xs:integer" use="required" />
+												<xs:attribute name="Alpha" type="xs:unsignedByte" default="255" use="optional" />
+												<xs:attribute name="Color" type="Color" use="optional" />
+												<xs:attribute name="Inherit" type="Boolean" use="optional" />
+												<xs:attribute name="OutlineAlpha" type="xs:unsignedByte" default="255" use="optional" />
+												<xs:attribute name="DrawMode" type="IndicatorDrawModeType" use="optional" />
+												<xs:attribute name="Style" type="IndicatorStyleType" use="optional" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Inherit" type="Boolean" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Lexer" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:choice maxOccurs="unbounded" minOccurs="0">
+											<xs:element name="Properties">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="Property" maxOccurs="unbounded" minOccurs="0">
+															<xs:complexType>
+																<xs:sequence />
+																<xs:attribute name="Name" type="xs:string" use="required" />
+																<xs:attribute name="Value" type="xs:string" use="required" />
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+													<xs:attribute name="Inherit" type="Boolean" use="optional" />
+												</xs:complexType>
+												<xs:key name="nameKey">
+													<xs:selector xpath="Property" />
+													<xs:field xpath="@Name" />
+												</xs:key>
+												<xs:keyref name="nameRef" refer="nameKey">
+													<xs:selector xpath="Property" />
+													<xs:field xpath="@Value" />
+												</xs:keyref>
+											</xs:element>
+											<xs:element name="Keywords">
+												<xs:complexType>
+													<xs:simpleContent>
+														<xs:extension base="xs:token">
+															<xs:attribute name="List" type="xs:unsignedInt" use="optional" />
+															<xs:attribute name="Name" type="xs:string" use="optional" />
+															<xs:attribute name="Inherit" type="Boolean" use="optional" />
+														</xs:extension>
+													</xs:simpleContent>
+												</xs:complexType>
+											</xs:element>
+										</xs:choice>
+									</xs:sequence>
+									<xs:attribute name="LineCommentPrefix" type="xs:string" use="optional" />
+									<xs:attribute name="StreamCommentPrefix" type="xs:string" use="optional" />
+									<xs:attribute name="StreamCommentSuffix" type="xs:string" use="optional" />
+									<xs:attribute name="LexerName" type="LexerType" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="LineWrapping" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence />
+									<xs:attribute name="Mode" type="LineWrappingModeType" use="optional" />
+									<xs:attribute name="IndentSize" type="xs:unsignedInt" use="optional" />
+									<xs:attribute name="IndentMode" type="LineWrappingIndentModeType" use="optional" />
+									<xs:attribute name="VisualFlags" type="LineWrappingVisualFlagsType" use="optional" />
+									<xs:attribute name="VisualFlagsLocations" type="LineWrappingVisualFlagsLocationsType" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="LongLines" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence />
+									<xs:attribute name="EdgeColor" type="Color" use="optional" />
+									<xs:attribute name="EdgeColumn" type="xs:unsignedInt" use="optional" />
+									<xs:attribute name="EdgeMode" type="EdgeModeType" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Margins" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Margin" maxOccurs="unbounded" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence />
+												<xs:attribute name="Number" type="xs:integer" use="required" />
+												<xs:attribute name="Inherit" type="Boolean" use="optional" />
+												<xs:attribute name="AutoToggleMarkerNumber" type="xs:integer" use="optional" />
+												<xs:attribute name="IsClickable" type="Boolean" use="optional" />
+												<xs:attribute name="IsFoldMargin" type="Boolean" use="optional" />
+												<xs:attribute name="IsMarkerMargin" type="Boolean" use="optional" />
+												<xs:attribute name="Type" type="MarginTypeType" use="optional" />
+												<xs:attribute name="Width" type="xs:unsignedInt" use="optional" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="FoldMarginColor" type="Color" use="optional" />
+									<xs:attribute name="FoldMarginHighlightColor" type="Color" use="optional" />
+									<xs:attribute name="Left" type="xs:integer" use="optional" />
+									<xs:attribute name="Right" type="xs:integer" use="optional" />
+									<xs:attribute name="Inherit" type="Boolean" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Markers" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Marker" maxOccurs="unbounded" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence />
+												<xs:attribute name="Alpha" type="xs:unsignedByte" default="255" use="optional" />
+												<xs:attribute name="BackColor" type="Color" use="optional" />
+												<xs:attribute name="ForeColor" type="Color" use="optional" />
+												<xs:attribute name="Name" type="xs:string" use="optional" />
+												<xs:attribute name="Number" type="xs:integer" use="required" />
+												<xs:attribute name="Inherit" type="Boolean" use="optional" />
+												<xs:attribute name="Symbol" type="MarkerSymbolType" use="optional" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Inherit" type="Boolean" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Scrolling" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence />
+									<xs:attribute name="ScrollPastEnd" type="Boolean" use="optional" />
+									<xs:attribute name="HorizontalScrollTracking" type="Boolean" use="optional" />
+									<xs:attribute name="HorizontalScrollWidth" type="xs:integer" use="optional" />
+									<xs:attribute name="ScrollBars" type="ScrollBarsType" use="optional" />
+									<xs:attribute name="HorizontalScrollOffset" type="xs:integer" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Selection" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence />
+									<xs:attribute name="BackColor" type="Color" use="optional" />
+									<xs:attribute name="BackColorUnfocused" type="Color" use="optional" />
+									<xs:attribute name="ForeColor" type="Color" use="optional" />
+									<xs:attribute name="ForeColorUnfocused" type="Color" use="optional" />
+									<xs:attribute name="Hidden" type="Boolean" use="optional" />
+									<xs:attribute name="HideSelection" type="Boolean" use="optional" />
+									<xs:attribute name="Mode" type="SelectionModeType" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Snippets" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Snippet" maxOccurs="unbounded" minOccurs="0">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="Shortcut" type="xs:string" use="required" />
+														<xs:attribute name="Delimeter" type="Character" use="optional" />
+														<xs:attribute name="IsSurroundsWith" type="Boolean" default="False" use="optional" />
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="ActiveSnippetColor" type="Color" use="optional" />
+									<xs:attribute name="ActiveSnippetIndicator" type="xs:integer" use="optional" />
+									<xs:attribute name="InactiveSnippetColor" type="Color" use="optional" />
+									<xs:attribute name="InactiveSnippetIndicator" type="xs:integer" use="optional" />
+									<xs:attribute name="ActiveSnippetIndicatorStyle" type="IndicatorStyleType" use="optional" />
+									<xs:attribute name="InactiveSnippetIndicatorStyle" type="IndicatorStyleType" use="optional" />
+									<xs:attribute name="DefaultDelimeter" type="Character" use="optional" />
+									<xs:attribute name="IsEnabled" type="Boolean" use="optional" />
+									<xs:attribute name="IsOneKeySelectionEmbedEnabled" type="Boolean" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Styles" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:choice maxOccurs="unbounded">
+											<xs:element name="Style" type="StyleType" />
+											<xs:element name="SubLanguage">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="Style" type="StyleType" maxOccurs="unbounded" minOccurs="0" />
+													</xs:sequence>
+													<xs:attribute name="Name" type="xs:string" use="required" />
+												</xs:complexType>
+											</xs:element>
+										</xs:choice>
+									</xs:sequence>
+									<xs:attribute name="Bits" type="xs:unsignedByte" default="7" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="UndoRedo" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence />
+									<xs:attribute name="IsUndoEnabled" type="Boolean" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Whitespace" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>
+										Determines how whitespace should be displayed.
+									</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence />
+									<xs:attribute name="BackColor" type="Color" use="optional">
+										<xs:annotation>
+											<xs:documentation>
+												The background color of whitespace characters.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="ForeColor" type="Color" use="optional">
+										<xs:annotation>
+											<xs:documentation>
+												The foreground color of whitespace characters.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="Mode" type="WhitespaceModeType" use="optional">
+										<xs:annotation>
+											<xs:documentation>
+												The mode used to display whitespace.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="Name" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>
+									The name of this language. This must match the name
+									of the xml file (without the extension) that this is defined in.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:complexType name="StyleType">
+		<xs:sequence />
+		<xs:attribute name="Name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					The name of the style. Either this or the Number attribute is required.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Number" type="xs:integer" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					The number of this style. Either this or the Name attribute is required.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Bold" type="Boolean" default="False" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					If true, the styled text will be bold.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="BackColor" type="Color" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					The color to display behind the text.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Case" type="StyleCaseType" default="Mixed" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					The case to display the styled text in.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CharacterSet" type="CharacterSetType" default="Default" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					The character set the styled text will be interpreted as being in.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="FontName" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					The name of the font to display the styled text in.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ForeColor" type="Color" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					The color to display the text in.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="IsChangeable" type="Boolean" default="True" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					If false, the styled text will be read-only.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="IsHotspot" type="Boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					If true, when the styled texed is dwelled upon, the HotspotDwelled
+					event will be fired.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="IsSelectionEOLFilled" type="Boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					If true, when the styled text is selected, an EOL will cause the selection to
+					cover the rest of the blank space on the line.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="IsVisible" type="Boolean" default="True" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					If false, the styled text will not be displayed.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Italic" type="Boolean" default="False" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					If true, the styled text will be italic.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Size" type="xs:unsignedInt" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					The size, in points, of the font.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Underline" type="Boolean" default="False" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					If true, the styled text will be underlined.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Inherit" type="Boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					If true, this style will inherit values set by it's parents.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!--
+	All types that are created from enums are
+	marked clearly with SOURCE: TheSourceFile.cs
+	To generate one of these lists, using Visual
+	Studio, do a replace in selection with regular
+	expressions. Search for the expression:
+			
+	{:i}( = (:z|:i\.:i))*,*
+			
+	And replace it with the expression:
+			
+	<xs:enumeration value="\1" />
+			
+	That will generate the lists needed.
+	
+	To strip all comments, replace the expression:
+	
+	:b*//.*
+	
+	With nothing, then replace:
+	
+	\n\n
+	
+	with nothing (you may have to do this step a couple of times).
+	-->
+	
+	<!-- SOURCE: BindableCommand.cs -->
+	<xs:simpleType name="BindableCommandType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AcceptActiveSnippets" />
+			<xs:enumeration value="AutoCCancel" />
+			<xs:enumeration value="AutoCComplete" />
+			<xs:enumeration value="AutoCShow" />
+			<xs:enumeration value="BackTab" />
+			<xs:enumeration value="BeginUndoAction" />
+			<xs:enumeration value="CallTipCancel" />
+			<xs:enumeration value="Cancel" />
+			<xs:enumeration value="CancelActiveSnippets" />
+			<xs:enumeration value="CharLeft" />
+			<xs:enumeration value="CharLeftExtend" />
+			<xs:enumeration value="CharLeftRectExtend" />
+			<xs:enumeration value="CharRight" />
+			<xs:enumeration value="CharRightExtend" />
+			<xs:enumeration value="CharRightRectExtend" />
+			<xs:enumeration value="ChooseCaretX" />
+			<xs:enumeration value="Clear" />
+			<xs:enumeration value="ClearAll" />
+			<xs:enumeration value="ClearAllCmdKeys" />
+			<xs:enumeration value="ClearDocumentStyle" />
+			<xs:enumeration value="ClearRegisteredImages" />
+			<xs:enumeration value="Copy" />
+			<xs:enumeration value="Cut" />
+			<xs:enumeration value="DeleteBack" />
+			<xs:enumeration value="DeleteBackNotLine" />
+			<xs:enumeration value="DelLineLeft" />
+			<xs:enumeration value="DelLineRight" />
+			<xs:enumeration value="DelWordLeft" />
+			<xs:enumeration value="DelWordRight" />
+			<xs:enumeration value="DocumentEnd" />
+			<xs:enumeration value="DocumentEndExtend" />
+			<xs:enumeration value="DocumentNavigateBackward" />
+			<xs:enumeration value="DocumentNavigateForward" />
+			<xs:enumeration value="DocumentStart" />
+			<xs:enumeration value="DocumentStartExtend" />
+			<xs:enumeration value="DoSnippetCheck" />
+			<xs:enumeration value="DropMarkerCollect" />
+			<xs:enumeration value="DropMarkerDrop" />
+			<xs:enumeration value="EditToggleOvertype" />
+			<xs:enumeration value="EmptyUndoBuffer" />
+			<xs:enumeration value="EndUndoAction" />
+			<xs:enumeration value="FindNext" />
+			<xs:enumeration value="FindPrevious" />
+			<xs:enumeration value="FormFeed" />
+			<xs:enumeration value="GrabFocus" />
+			<xs:enumeration value="Home" />
+			<xs:enumeration value="HomeDisplay" />
+			<xs:enumeration value="HomeDisplayExtend" />
+			<xs:enumeration value="HomeExtend" />
+			<xs:enumeration value="HomeRectExtend" />
+			<xs:enumeration value="HomeWrap" />
+			<xs:enumeration value="HomeWrapExtend" />
+			<xs:enumeration value="IncrementalSearch" />
+			<xs:enumeration value="LineCopy" />
+			<xs:enumeration value="LineComment" />
+			<xs:enumeration value="LineCut" />
+			<xs:enumeration value="LineDelete" />
+			<xs:enumeration value="LineDown" />
+			<xs:enumeration value="LineDownExtend" />
+			<xs:enumeration value="LineDownRectExtend" />
+			<xs:enumeration value="LineDuplicate" />
+			<xs:enumeration value="LineEnd" />
+			<xs:enumeration value="LineEndDisplay" />
+			<xs:enumeration value="LineEndDisplayExtend" />
+			<xs:enumeration value="LineEndExtend" />
+			<xs:enumeration value="LineEndRectExtend" />
+			<xs:enumeration value="LineEndWrap" />
+			<xs:enumeration value="LineEndWrapExtend" />
+			<xs:enumeration value="LineScrollDown" />
+			<xs:enumeration value="LineScrollUp" />
+			<xs:enumeration value="LinesJoin" />
+			<xs:enumeration value="LineTranspose" />
+			<xs:enumeration value="LineUncomment" />
+			<xs:enumeration value="LineUp" />
+			<xs:enumeration value="LineUpExtend" />
+			<xs:enumeration value="LineUpRectExtend" />
+			<xs:enumeration value="LowerCase" />
+			<xs:enumeration value="MoveCaretInsideView" />
+			<xs:enumeration value="MoveSelectedLinesDown" />
+			<xs:enumeration value="MoveSelectedLinesUp" />
+			<xs:enumeration value="NewLine" />
+			<xs:enumeration value="NextSnippetRange" />
+			<xs:enumeration value="Null" />
+			<xs:enumeration value="PageDown" />
+			<xs:enumeration value="PageDownExtend" />
+			<xs:enumeration value="PageDownRectExtend" />
+			<xs:enumeration value="PageUp" />
+			<xs:enumeration value="PageUpExtend" />
+			<xs:enumeration value="PageUpRectExtend" />
+			<xs:enumeration value="ParaDown" />
+			<xs:enumeration value="ParaDownExtend" />
+			<xs:enumeration value="ParaUp" />
+			<xs:enumeration value="ParaUpExtend" />
+			<xs:enumeration value="PreviousSnippetRange" />
+			<xs:enumeration value="Print" />
+			<xs:enumeration value="PrintPreview" />
+			<xs:enumeration value="Paste" />
+			<xs:enumeration value="Redo" />
+			<xs:enumeration value="ScrollCaret" />
+			<xs:enumeration value="SearchAnchor" />
+			<xs:enumeration value="SelectAll" />
+			<xs:enumeration value="SelectionDuplicate" />
+			<xs:enumeration value="SetCharsDefault" />
+			<xs:enumeration value="SetSavePoint" />
+			<xs:enumeration value="SetZoom" />
+			<xs:enumeration value="ShowFind" />
+			<xs:enumeration value="ShowReplace" />
+			<xs:enumeration value="ShowSnippetList" />
+			<xs:enumeration value="ShowSurroundWithList" />
+			<xs:enumeration value="ShowGoTo" />
+			<xs:enumeration value="StartRecord" />
+			<xs:enumeration value="StreamComment" />
+			<xs:enumeration value="StopRecord" />
+			<xs:enumeration value="StutteredPageDown" />
+			<xs:enumeration value="StutteredPageDownExtend" />
+			<xs:enumeration value="StutteredPageUp" />
+			<xs:enumeration value="StutteredPageUpExtend" />
+			<xs:enumeration value="StyleClearAll" />
+			<xs:enumeration value="StyleResetDefault" />
+			<xs:enumeration value="Tab" />
+			<xs:enumeration value="TargetFromSelection" />
+			<xs:enumeration value="ToggleCaretSticky" />
+			<xs:enumeration value="ToggleLineComment" />
+			<xs:enumeration value="Undo" />
+			<xs:enumeration value="UpperCase" />
+			<xs:enumeration value="VCHome" />
+			<xs:enumeration value="VCHomeExtend" />
+			<xs:enumeration value="VCHomeRectExtend" />
+			<xs:enumeration value="VCHomeWrap" />
+			<xs:enumeration value="VCHomeWrapExtend" />
+			<xs:enumeration value="WordLeft" />
+			<xs:enumeration value="WordLeftEnd" />
+			<xs:enumeration value="WordLeftEndExtend" />
+			<xs:enumeration value="WordLeftExtend" />
+			<xs:enumeration value="WordPartLeft" />
+			<xs:enumeration value="WordPartLeftExtend" />
+			<xs:enumeration value="WordPartRight" />
+			<xs:enumeration value="WordPartRightExtend" />
+			<xs:enumeration value="WordRight" />
+			<xs:enumeration value="WordRightEnd" />
+			<xs:enumeration value="WordRightEndExtend" />
+			<xs:enumeration value="WordRightExtend" />
+			<xs:enumeration value="ZoomIn" />
+			<xs:enumeration value="ZoomOut" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- SOURCE: CaretStyle.cs -->
+	<xs:simpleType name="CaretStyleType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Invisible">
+				<xs:annotation>
+					<xs:documentation>
+						The caret is not displayed.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Line">
+				<xs:annotation>
+					<xs:documentation>
+						A vertical line is displayed.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Block">
+				<xs:annotation>
+					<xs:documentation>
+						A horizontal block is displayed that may cover the character.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- SOURCE: CharacterSet.cs -->
+	<xs:simpleType name="CharacterSetType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Ansi" />
+			<xs:enumeration value="Default" />
+			<xs:enumeration value="Baltic" />
+			<xs:enumeration value="Chinesebig5" />
+			<xs:enumeration value="EastEurope" />
+			<xs:enumeration value="Gb2312" />
+			<xs:enumeration value="Greek" />
+			<xs:enumeration value="Hangul" />
+			<xs:enumeration value="Mac" />
+			<xs:enumeration value="Oem" />
+			<xs:enumeration value="Russian" />
+			<xs:enumeration value="Cyrillic" />
+			<xs:enumeration value="ShiftJis" />
+			<xs:enumeration value="Symbol" />
+			<xs:enumeration value="Turkish" />
+			<xs:enumeration value="Johab" />
+			<xs:enumeration value="Hebrew" />
+			<xs:enumeration value="Arabic" />
+			<xs:enumeration value="Vietnamese" />
+			<xs:enumeration value="Thai" />
+			<xs:enumeration value="CharSet885915" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- SOURCE: EdgeMode.cs -->
+	<xs:simpleType name="EdgeModeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="None">
+				<xs:annotation>
+					<xs:documentation>
+						No indication.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Line">
+				<xs:annotation>
+					<xs:documentation>
+						A vertical line is displayed.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Background">
+				<xs:annotation>
+					<xs:documentation>
+						The background color changes.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- SOURCE: EndOfLineMode.cs -->
+	<xs:simpleType name="EndOfLineModeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CRLF">
+				<xs:annotation>
+					<xs:documentation>
+						Carriage Return + Line Feed (Windows Style)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CR">
+				<xs:annotation>
+					<xs:documentation>
+						Carriage Return Only (MacOS Style)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LF">
+				<xs:annotation>
+					<xs:documentation>
+						Line Feed Only (Unix/MacOSX Style)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- SOURCE: FoldMarkerScheme.cs -->
+	<xs:simpleType name="FoldMarkerSchemeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PlusMinus" />
+			<xs:enumeration value="BoxPlusMinus" />
+			<xs:enumeration value="CirclePlusMinus" />
+			<xs:enumeration value="Arrow" />
+			<xs:enumeration value="Custom" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- SOURCE: IndicatorDrawMode.cs -->
+	<xs:simpleType name="IndicatorDrawModeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Underlay">
+				<xs:annotation>
+					<xs:documentation>
+						Indicators are drawn under text.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Overlay">
+				<xs:annotation>
+					<xs:documentation>
+						Indicators are drawn over text.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- SOURCE: IndicatorStyle.cs -->
+	<xs:simpleType name="IndicatorStyleType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Plain">
+				<xs:annotation>
+					<xs:documentation>
+						Underlined with a single, straight line.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Squiggle">
+				<xs:annotation>
+					<xs:documentation>
+						A squiggly underline.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TT">
+				<xs:annotation>
+					<xs:documentation>
+						A line of small T shapes.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Diagonal">
+				<xs:annotation>
+					<xs:documentation>
+						Diagonal hatching.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Strike">
+				<xs:annotation>
+					<xs:documentation>
+						Strike out.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Hidden">
+				<xs:annotation>
+					<xs:documentation>
+						An indicator with no visual effect.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Box">
+				<xs:annotation>
+					<xs:documentation>
+						A rectangle around the text.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RoundBox">
+				<xs:annotation>
+					<xs:documentation>
+						A rectangle with rounded corners around the text using translucent
+						drawing with the interior usually more transparent than the border.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="StraightBox">
+				<xs:annotation>
+					<xs:documentation>
+						A rectangle around the text using translucent drawing with the
+						interior usually more transparent than the border.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Dash">
+				<xs:annotation>
+					<xs:documentation>
+						A dashed underline.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Dots">
+				<xs:annotation>
+					<xs:documentation>
+						A dotted underline.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SquiggleLow">
+				<xs:annotation>
+					<xs:documentation>
+						A squiggly underline.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DotBox">
+				<xs:annotation>
+					<xs:documentation>
+						A dotted rectangle around the text using translucent drawing.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SquigglePixmap">
+				<xs:annotation>
+					<xs:documentation>
+						A squiggly underline.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- SOURCE: Lexer.cs -->
+	<xs:simpleType name="LexerType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Container">
+				<xs:annotation>
+					<xs:documentation>
+						No lexing is performed, the Containing application must respond to StyleNeeded events.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Null">
+				<xs:annotation>
+					<xs:documentation>
+						No lexing is performed.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Python" />
+			<xs:enumeration value="Cpp" />
+			<xs:enumeration value="Hypertext" />
+			<xs:enumeration value="Xml" />
+			<xs:enumeration value="Perl" />
+			<xs:enumeration value="Sql" />
+			<xs:enumeration value="VB" />
+			<xs:enumeration value="Properties" />
+			<xs:enumeration value="ErrorList" />
+			<xs:enumeration value="MakeFile" />
+			<xs:enumeration value="Batch" />
+			<xs:enumeration value="XCode" />
+			<xs:enumeration value="Latex" />
+			<xs:enumeration value="Lua" />
+			<xs:enumeration value="Diff" />
+			<xs:enumeration value="Conf" />
+			<xs:enumeration value="Pascal" />
+			<xs:enumeration value="Ave" />
+			<xs:enumeration value="Ada" />
+			<xs:enumeration value="Lisp" />
+			<xs:enumeration value="Ruby" />
+			<xs:enumeration value="Eiffel" />
+			<xs:enumeration value="EiffelKw" />
+			<xs:enumeration value="Tcl" />
+			<xs:enumeration value="NnCronTab" />
+			<xs:enumeration value="Bullant" />
+			<xs:enumeration value="VBScript" />
+			<xs:enumeration value="Asp" />
+			<xs:enumeration value="Php" />
+			<xs:enumeration value="Baan" />
+			<xs:enumeration value="MatLab" />
+			<xs:enumeration value="Scriptol" />
+			<xs:enumeration value="Asm" />
+			<xs:enumeration value="CppNoCase">
+				<xs:annotation>
+					<xs:documentation>
+						The same as Cpp, except that keywords are not case sensitive.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Fortran" />
+			<xs:enumeration value="F77" />
+			<xs:enumeration value="Css" />
+			<xs:enumeration value="Pov" />
+			<xs:enumeration value="Lout" />
+			<xs:enumeration value="EScript" />
+			<xs:enumeration value="Ps" />
+			<xs:enumeration value="Nsis" />
+			<xs:enumeration value="Mmixal" />
+			<xs:enumeration value="Clw" />
+			<xs:enumeration value="ClwNoCase" />
+			<xs:enumeration value="Lot" />
+			<xs:enumeration value="Yaml" />
+			<xs:enumeration value="Tex" />
+			<xs:enumeration value="MetaPost" />
+			<xs:enumeration value="PowerBasic" />
+			<xs:enumeration value="Forth" />
+			<xs:enumeration value="ErLang" />
+			<xs:enumeration value="Octave" />
+			<xs:enumeration value="MsSql" />
+			<xs:enumeration value="Verilog" />
+			<xs:enumeration value="Kix" />
+			<xs:enumeration value="Gui4Cli" />
+			<xs:enumeration value="Specman" />
+			<xs:enumeration value="Au3" />
+			<xs:enumeration value="Apdl" />
+			<xs:enumeration value="Bash" />
+			<xs:enumeration value="Asn1" />
+			<xs:enumeration value="Vhdl" />
+			<xs:enumeration value="Caml" />
+			<xs:enumeration value="BlitzBasic" />
+			<xs:enumeration value="PureBasic" />
+			<xs:enumeration value="Haskell" />
+			<xs:enumeration value="PhpScript" />
+			<xs:enumeration value="Tads3" />
+			<xs:enumeration value="Rebol" />
+			<xs:enumeration value="Smalltalk" />
+			<xs:enumeration value="Flagship" />
+			<xs:enumeration value="CSound" />
+			<xs:enumeration value="FreeBasic" />
+			<xs:enumeration value="InnoSetup" />
+			<xs:enumeration value="Opal" />
+			<xs:enumeration value="Spice" />
+			<xs:enumeration value="D" />
+			<xs:enumeration value="CMake" />
+			<xs:enumeration value="Gap" />
+			<xs:enumeration value="Plm" />
+			<xs:enumeration value="Progress" />
+			<xs:enumeration value="Automatic" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- SOURCE: LineWrappingMode.cs -->
+	<xs:simpleType name="LineWrappingModeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="None">
+				<xs:annotation>
+					<xs:documentation>
+						Line wrapping is disabled.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Word">
+				<xs:annotation>
+					<xs:documentation>
+						Lines wrap on word boundaries.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Char">
+				<xs:annotation>
+					<xs:documentation>
+						Lines wrap between characters.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- SOURCE: LineWrappingIndentMode.cs -->
+	<xs:simpleType name="LineWrappingIndentModeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Fixed">
+				<xs:annotation>
+					<xs:documentation>
+						Wrapped lines are aligned on the left and indented by the amount
+						specified in the IndentSize attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Same">
+				<xs:annotation>
+					<xs:documentation>
+						Wrapped lines are aligned to the first subline indent.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Indent">
+				<xs:annotation>
+					<xs:documentation>
+						Wrapped lines are aligned to the first subline indent plus
+						one more level of indentation.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- SOURCE: LineWrappingVisualFlagsLocations.cs -->
+	<xs:simpleType name="LineWrappingVisualFlagsLocationsType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Default">
+				<xs:annotation>
+					<xs:documentation>
+						Line wrapping glyphs are drawn near the control border.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EndByText">
+				<xs:annotation>
+					<xs:documentation>
+						Line wrapping glyphs are drawn at the end of wrapped lines near the text.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="StartByText">
+				<xs:annotation>
+					<xs:documentation>
+						Line wrapping glyphs are drawn at the start of wrapped lines near the text.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- SOURCE: MarginType.cs -->
+	<xs:simpleType name="MarginTypeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Symbol" />
+			<xs:enumeration value="Number" />
+			<xs:enumeration value="Back" />
+			<xs:enumeration value="Fore" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- SOURCE: MarkerSymbol.cs -->
+	<xs:simpleType name="MarkerSymbolType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Circle">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a circle.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RoundRectangle">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a rectangle with rounded edges.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Arrow">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a triangle pointing right.
+						This symbol is typically used to mark a closed folder.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SmallRect">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a horizontal rectangle.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ShortArrow">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a small arrow pointing right.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Empty">
+				<xs:annotation>
+					<xs:documentation>
+						The marker has no visible glpyh.
+						This symbol can still be used, however, to mark and track lines.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ArrowDown">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a triangle pointing down.
+						This symbol is typically used to mark an open folder.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Minus">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a minus sign.
+						This symbol is typically used to mark an open folder.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Plus">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a plus sign.
+						This symbol is typically used to mark a closed folder.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VLine">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a vertical line.
+						This symbol is typically used to mark nested lines of an open folder.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LCorner">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as straight lines intersecting in an "L" shape.
+						This symbol is typically used to mark the end of a folder in a "box style" tree.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TCorner">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as straight lines intersecting in a rotated "T" shape.
+						This symbol is typically used to mark the end of a nested folder in a "box style" tree.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BoxPlus">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a plus sign surrounded by a rectangle.
+						This symbol is typically used to mark a closed folder in a "box style" tree.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BoxPlusConnected">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a plus sign surrounded by a rectangle and vertial lines.
+						This symbol is typically used to mark a nested closed folder in a "box style" tree.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BoxMinus">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a minus sign surrounded by a rectangle and a vertical line at the bottom.
+						This symbol is typically used to mark an open folder in a "box style" tree.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BoxMinusConnected">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a minus sign surrounded by a rectangle and vertical lines.
+						This symbol is typically used to mark a nested open folder in a "box style" tree.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LCornerCurve">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as curved lines intersecting in an "L" shape.
+						This symbol is typically used to mark the end of a folder in a "circle style" tree.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TCornerCurve">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as curved lines intersecting in a rotated "T" shape.
+						This symbol is typically used to mark the end of a nested folder in a "circle style" tree.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CirclePlus">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a plus sign surrounded by a circle.
+						This symbol is typically used to mark a closed folder in a "circle style" tree.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CirclePlusConnected">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a plus sign surrounded by a circle and vertial lines.
+						This symbol is typically used to mark a nested closed folder in a "circle style" tree.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CircleMinus">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a minus sign surrounded by a circle and a vertical line at the bottom.
+						This symbol is typically used to mark an open folder in a "circle style" tree.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CircleMinusConnected">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a minus sign surrounded by a circle and vertical lines.
+						This symbol is typically used to mark a nested open folder in a "circle style" tree.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Background">
+				<xs:annotation>
+					<xs:documentation>
+						The marker has no visible glyph, however, the background color of the entire text line
+						is drawn as specified in the ForeColor attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Ellipsis">
+				<xs:annotation>
+					<xs:documentation>
+						This marker is drawn as three horizontal dots.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Arrows">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as three consecutive greater than glyphs.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PixMap">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn using the image specified in the <see cref="Marker.SetImage">Marker.SetImage</see> method.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FullRectangle">
+				<xs:annotation>
+					<xs:documentation>
+						The marker has no visible glyph, however, the margin background color is drawn as
+						specified in the ForeColor attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LeftRectangle">
+				<xs:annotation>
+					<xs:documentation>
+						The marker is drawn as a thick vertical line along the left edge of the margin.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Available">
+				<xs:annotation>
+					<xs:documentation>
+						The marker has no visible glyph, however, it can be used to signify to a plugin
+						that the marker is available for a custom purpose.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Underline">
+				<xs:annotation>
+					<xs:documentation>
+						The marker has no visible glyph, however, the entire text line is drawn with an underline in
+						the color specified by the ForeColor attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- SOURCE: SelectionMode.cs -->
+	<xs:simpleType name="SelectionModeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Stream" />
+			<xs:enumeration value="Rectangle" />
+			<xs:enumeration value="Lines" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- SOURCE: SmartIndent.cs -->
+	<xs:simpleType name="SmartIndentType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="None">
+				<xs:annotation>
+					<xs:documentation>
+						No smart indent.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CPP">
+				<xs:annotation>
+					<xs:documentation>
+						C++ style indenting.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CPP2">
+				<xs:annotation>
+					<xs:documentation>
+						Alternate C++ style indenting.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Simple">
+				<xs:annotation>
+					<xs:documentation>
+						Block indenting, the last indentation is retained in new lines.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- SOURCE: StyleCase.cs -->
+	<xs:simpleType name="StyleCaseType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Mixed">
+				<xs:annotation>
+					<xs:documentation>
+						Both upper and lower case.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Upper">
+				<xs:annotation>
+					<xs:documentation>
+						Only upper case.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Lower">
+				<xs:annotation>
+					<xs:documentation>
+						Only lower case.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- SOURCE: WhitespaceMode.cs -->
+	<xs:simpleType name="WhitespaceModeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Invisible">
+				<xs:annotation>
+					<xs:documentation>
+						The normal display mode with whitespace displayed as an empty background color.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VisibleAlways">
+				<xs:annotation>
+					<xs:documentation>
+						Whitespace characters are drawn as dots and arrows.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VisibleAfterIndent">
+				<xs:annotation>
+					<xs:documentation>
+						Whitespace used for indentation is displayed normally but after the first visible character, it is shown as dots and arrows.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- SOURCE: System.Windows.Forms.Keys -->
+	<xs:simpleType name="KeysType">
+		<xs:restriction base="xs:string">
+			<!-- These first few are additions. -->
+			<xs:enumeration value="/" />
+			<xs:enumeration value="`" />
+			<xs:enumeration value="[" />
+			<xs:enumeration value="\" />
+			<xs:enumeration value="]" />
+			<xs:enumeration value="-" />
+			
+			<xs:enumeration value="Modifiers" />
+			<xs:enumeration value="None" />
+			<xs:enumeration value="LButton" />
+			<xs:enumeration value="RButton" />
+			<xs:enumeration value="Cancel" />
+			<xs:enumeration value="MButton" />
+			<xs:enumeration value="XButton1" />
+			<xs:enumeration value="XButton2" />
+			<xs:enumeration value="Back" />
+			<xs:enumeration value="Tab" />
+			<xs:enumeration value="LineFeed" />
+			<xs:enumeration value="Clear" />
+			<xs:enumeration value="Enter" />
+			<xs:enumeration value="Return" />
+			<xs:enumeration value="ShiftKey" />
+			<xs:enumeration value="ControlKey" />
+			<xs:enumeration value="Menu" />
+			<xs:enumeration value="Pause" />
+			<xs:enumeration value="CapsLock" />
+			<xs:enumeration value="Capital" />
+			<xs:enumeration value="KanaMode" />
+			<xs:enumeration value="HanguelMode" />
+			<xs:enumeration value="HangulMode" />
+			<xs:enumeration value="JunjaMode" />
+			<xs:enumeration value="FinalMode" />
+			<xs:enumeration value="KanjiMode" />
+			<xs:enumeration value="HanjaMode" />
+			<xs:enumeration value="Escape" />
+			<xs:enumeration value="IMEConvert" />
+			<xs:enumeration value="IMENonconvert" />
+			<xs:enumeration value="IMEAceept" />
+			<xs:enumeration value="IMEAccept" />
+			<xs:enumeration value="IMEModeChange" />
+			<xs:enumeration value="Space" />
+			<xs:enumeration value="Prior" />
+			<xs:enumeration value="PageUp" />
+			<xs:enumeration value="Next" />
+			<xs:enumeration value="PageDown" />
+			<xs:enumeration value="End" />
+			<xs:enumeration value="Home" />
+			<xs:enumeration value="Left" />
+			<xs:enumeration value="Up" />
+			<xs:enumeration value="Right" />
+			<xs:enumeration value="Down" />
+			<xs:enumeration value="Select" />
+			<xs:enumeration value="Print" />
+			<xs:enumeration value="Execute" />
+			<xs:enumeration value="PrintScreen" />
+			<xs:enumeration value="Snapshot" />
+			<xs:enumeration value="Insert" />
+			<xs:enumeration value="Delete" />
+			<xs:enumeration value="Help" />
+			<xs:enumeration value="D0" />
+			<xs:enumeration value="D1" />
+			<xs:enumeration value="D2" />
+			<xs:enumeration value="D3" />
+			<xs:enumeration value="D4" />
+			<xs:enumeration value="D5" />
+			<xs:enumeration value="D6" />
+			<xs:enumeration value="D7" />
+			<xs:enumeration value="D8" />
+			<xs:enumeration value="D9" />
+			<xs:enumeration value="A" />
+			<xs:enumeration value="B" />
+			<xs:enumeration value="C" />
+			<xs:enumeration value="D" />
+			<xs:enumeration value="E" />
+			<xs:enumeration value="F" />
+			<xs:enumeration value="G" />
+			<xs:enumeration value="H" />
+			<xs:enumeration value="I" />
+			<xs:enumeration value="J" />
+			<xs:enumeration value="K" />
+			<xs:enumeration value="L" />
+			<xs:enumeration value="M" />
+			<xs:enumeration value="N" />
+			<xs:enumeration value="O" />
+			<xs:enumeration value="P" />
+			<xs:enumeration value="Q" />
+			<xs:enumeration value="R" />
+			<xs:enumeration value="S" />
+			<xs:enumeration value="T" />
+			<xs:enumeration value="U" />
+			<xs:enumeration value="V" />
+			<xs:enumeration value="W" />
+			<xs:enumeration value="X" />
+			<xs:enumeration value="Y" />
+			<xs:enumeration value="Z" />
+			<xs:enumeration value="LWin" />
+			<xs:enumeration value="RWin" />
+			<xs:enumeration value="Apps" />
+			<xs:enumeration value="Sleep" />
+			<xs:enumeration value="NumPad0" />
+			<xs:enumeration value="NumPad1" />
+			<xs:enumeration value="NumPad2" />
+			<xs:enumeration value="NumPad3" />
+			<xs:enumeration value="NumPad4" />
+			<xs:enumeration value="NumPad5" />
+			<xs:enumeration value="NumPad6" />
+			<xs:enumeration value="NumPad7" />
+			<xs:enumeration value="NumPad8" />
+			<xs:enumeration value="NumPad9" />
+			<xs:enumeration value="Multiply" />
+			<xs:enumeration value="Add" />
+			<xs:enumeration value="Separator" />
+			<xs:enumeration value="Subtract" />
+			<xs:enumeration value="Decimal" />
+			<xs:enumeration value="Divide" />
+			<xs:enumeration value="F1" />
+			<xs:enumeration value="F2" />
+			<xs:enumeration value="F3" />
+			<xs:enumeration value="F4" />
+			<xs:enumeration value="F5" />
+			<xs:enumeration value="F6" />
+			<xs:enumeration value="F7" />
+			<xs:enumeration value="F8" />
+			<xs:enumeration value="F9" />
+			<xs:enumeration value="F10" />
+			<xs:enumeration value="F11" />
+			<xs:enumeration value="F12" />
+			<xs:enumeration value="F13" />
+			<xs:enumeration value="F14" />
+			<xs:enumeration value="F15" />
+			<xs:enumeration value="F16" />
+			<xs:enumeration value="F17" />
+			<xs:enumeration value="F18" />
+			<xs:enumeration value="F19" />
+			<xs:enumeration value="F20" />
+			<xs:enumeration value="F21" />
+			<xs:enumeration value="F22" />
+			<xs:enumeration value="F23" />
+			<xs:enumeration value="F24" />
+			<xs:enumeration value="NumLock" />
+			<xs:enumeration value="Scroll" />
+			<xs:enumeration value="LShiftKey" />
+			<xs:enumeration value="RShiftKey" />
+			<xs:enumeration value="LControlKey" />
+			<xs:enumeration value="RControlKey" />
+			<xs:enumeration value="LMenu" />
+			<xs:enumeration value="RMenu" />
+			<xs:enumeration value="BrowserBack" />
+			<xs:enumeration value="BrowserForward" />
+			<xs:enumeration value="BrowserRefresh" />
+			<xs:enumeration value="BrowserStop" />
+			<xs:enumeration value="BrowserSearch" />
+			<xs:enumeration value="BrowserFavorites" />
+			<xs:enumeration value="BrowserHome" />
+			<xs:enumeration value="VolumeMute" />
+			<xs:enumeration value="VolumeDown" />
+			<xs:enumeration value="VolumeUp" />
+			<xs:enumeration value="MediaNextTrack" />
+			<xs:enumeration value="MediaPreviousTrack" />
+			<xs:enumeration value="MediaStop" />
+			<xs:enumeration value="MediaPlayPause" />
+			<xs:enumeration value="LaunchMail" />
+			<xs:enumeration value="SelectMedia" />
+			<xs:enumeration value="LaunchApplication1" />
+			<xs:enumeration value="LaunchApplication2" />
+			<xs:enumeration value="Oem1" />
+			<xs:enumeration value="OemSemicolon" />
+			<xs:enumeration value="Oemplus" />
+			<xs:enumeration value="Oemcomma" />
+			<xs:enumeration value="OemMinus" />
+			<xs:enumeration value="OemPeriod" />
+			<xs:enumeration value="OemQuestion" />
+			<xs:enumeration value="Oem2" />
+			<xs:enumeration value="Oemtilde" />
+			<xs:enumeration value="Oem3" />
+			<xs:enumeration value="Oem4" />
+			<xs:enumeration value="OemOpenBrackets" />
+			<xs:enumeration value="OemPipe" />
+			<xs:enumeration value="Oem5" />
+			<xs:enumeration value="Oem6" />
+			<xs:enumeration value="OemCloseBrackets" />
+			<xs:enumeration value="Oem7" />
+			<xs:enumeration value="OemQuotes" />
+			<xs:enumeration value="Oem8" />
+			<xs:enumeration value="Oem102" />
+			<xs:enumeration value="OemBackslash" />
+			<xs:enumeration value="ProcessKey" />
+			<xs:enumeration value="Packet" />
+			<xs:enumeration value="Attn" />
+			<xs:enumeration value="Crsel" />
+			<xs:enumeration value="Exsel" />
+			<xs:enumeration value="EraseEof" />
+			<xs:enumeration value="Play" />
+			<xs:enumeration value="Zoom" />
+			<xs:enumeration value="NoName" />
+			<xs:enumeration value="Pa1" />
+			<xs:enumeration value="OemClear" />
+			<xs:enumeration value="KeyCode" />
+			<xs:enumeration value="Shift" />
+			<xs:enumeration value="Control" />
+			<xs:enumeration value="Alt" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- SOURCE: System.Windows.Forms.ScrollBars -->
+	<xs:simpleType name="ScrollBarsType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="None" />
+			<xs:enumeration value="Horizontal" />
+			<xs:enumeration value="Vertical" />
+			<xs:enumeration value="Both" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="FoldFlagType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([Ll]ine([Bb]efore([Ee]xpanded|[Cc]ontracted)|[Aa]fter([Ee]xpanded|[Cc]ontracted))) )*([Ll]ine([Bb]efore([Ee]xpanded|[Cc]ontracted)|[Aa]fter([Ee]xpanded|[Cc]ontracted)))" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="KeyModifierType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([Ss]hift|[Cc]ontrol|[Aa]lt) )*([Ss]hift|[Cc]ontrol|[Aa]lt)" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="LineWrappingVisualFlagsType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([Nn]one|[Ee]nd|[Ss]tart) )*([Nn]one|[Ee]nd|[Ss]tart)" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+
+	<xs:simpleType name="BlinkRateType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d+|[Ss]ystem" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Color">
+		<!--
+		This is better done with a union, but I don't
+		envy having to re-type the list of valid colors.
+		-->
+		<!--xs:union>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="AliceBlue" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="#[0-9a-fA-F]{6}" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union-->
+		<xs:restriction base="xs:string">
+			<!-- 
+			Believe it or not, I actually already had this regex
+			laying around from another project. It matches every
+			web color that is defined in the W3 standard, and it
+			allows for any capitalization at word boundaries.
+			-->
+			<xs:pattern value="#[0-9a-fA-F]{6}|(?:[Aa](?:lice[Bb]lue|ntique[Ww]hite|qua(?:[Mm]arine)?|zure)|[Bb](?:eige|isque|l(?:a(?:ck|nched[Aa]lmond)|ue(?:[Vv]iolet)?)|rown|urly[Ww]ood)|[Cc](?:adet[Bb]lue|h(?:artreuse|ocolate)|or(?:al|n(?:[Ff]lower[Bb]lue|[Ss]ilk))|rimson|yan)|[Dd](?:ark(?:[Bb]lue|[Cc]yan|[Gg](?:olden[Rr]od|r(?:ay|e(?:y|en)))|[Kk]haki|[Mm]agenta|[Oo](?:live[Gg]reen|r(?:ange|chid))|[Rr]ed|[Ss](?:almon|ea[Gg]reen|late(?:[Bb]lue|[Gg]r[ae]y))|[Tt]urquoise|[Vv]iolet)|eep(?:[Pp]ink|[Ss]ky[Bb]lue)|im[Gg]r[ae]y|odger[Bb]lue)|[Ff](?:ire[Bb]rick|loral[Ww]hite|orest[Gg]reen|uchsia)|[Gg](?:ainsboro|host[Ww]hite|old(?:en[Rr]od)?|r(?:[ae]y|een(?:[Yy]ellow)?))|ho(?:ney[Dd]ew|t[Pp]ink)|[Ii](?:ndi(?:an[Rr]ed|go)|vory)|[Kk]haki|[Ll](?:a(?:vender(?:[Bb]lush)?|wn[Gg]reen)|emon[Cc]hiffon|ight(?:[Bb]lue|[Cc](?:oral|yan)|[Gg](?:olden[Rr]od[Yy]ellow|r(?:ay|e(?:y|en)))|[Pp]ink|[Ss](?:almon|ea[Gg]reen|ky[Bb]lue|late[Gg]r[ae]y|teel[Bb]lue)|[Yy]ellow)|i(?:me(?:[Gg]reen)?|nen))|[Mm](?:a(?:genta|roon)|edium(?:[Aa]qua[Mm]arine|[Bb]lue|[Oo]rchid|[Pp]urple|[Ss](?:ea[Gg]reen|late[Bb]lue|pring[Gg]reen)|[Tt]urquoise|[Vv]iolet[Rr]ed)|i(?:dnight[Bb]lue|nt[Cc]ream|sty[Rr]ose)|occasin)|[Nn]av(?:ajo[Ww]hite|y)|[Oo](?:l(?:d[Ll]ace|ive(?:[Dd]rab)?)|r(?:ange(?:[Rr]ed)?|chid))|[Pp](?:a(?:le(?:[Gg](?:olden[Rr]od|reen)|[Tt]urquoise|[Vv]ioletred)|paya[Ww]hip)|e(?:ach[Pp]uff|ru)|ink|lum|owder[Bb]lue|urple)|[Rr](?:ed|o(?:sy[Bb]rown|yal[Bb]lue))|[Ss](?:a(?:ddle[Bb]rown|lmon|ndy[Bb]rown)|ea(?:[Gg]reen|[Ss]hell)|i(?:enna|lver)|ky[Bb]lue|late(?:[Bb]lue|[Gg]r[ae]y)|now|pring[Gg]reen|teel[Bb]lue)|[Tt](?:an|eal|histle|omato|urquoise)|[Vv]iolet|[Ww]h(?:eat|ite(?:[Ss]moke)?)|[Yy]ellow(?:[Gg]reen)?)" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	
+	<!-- Additional primitive types -->
+	
+	<xs:simpleType name="Boolean">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="true" />
+			<xs:enumeration value="True" />
+			<xs:enumeration value="false" />
+			<xs:enumeration value="False" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Character">
+		<xs:restriction base="xs:string">
+			<xs:length value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
