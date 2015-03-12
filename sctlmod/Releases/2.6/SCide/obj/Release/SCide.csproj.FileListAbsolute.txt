@@ -1,0 +1,10 @@
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\bin\Release\SCide.exe
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\bin\Release\SCide.pdb
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\SCide\obj\Release\SCide.csprojResolveAssemblyReference.cache
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\SCide\obj\Release\SCide.DocumentForm.resources
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\SCide\obj\Release\SCide.Properties.Resources.resources
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\SCide\obj\Release\SCide.AboutForm.resources
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\SCide\obj\Release\SCide.MainForm.resources
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\SCide\obj\Release\SCide.csproj.GenerateResource.Cache
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\SCide\obj\Release\SCide.exe
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\SCide\obj\Release\SCide.pdb

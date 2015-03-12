@@ -29,9 +29,15 @@ namespace _3DS_IDE
                 return "failed";
             }
         }
+        //setup variables
         bool shouldNew = Properties.Settings.Default.shouldNew;
         string createworkdirloc;
+        string workdirname;
         string workdir;
+
+        //project variables
+        string projectname;
+        string projectversion;
         public IDE()
         {
             InitializeComponent();
@@ -44,7 +50,7 @@ namespace _3DS_IDE
             if (shouldNew)
             {
                 createworkdirloc = ChooseFolder();
-                workdir = Interaction.InputBox("What do you want to name your project?", "Setup", "");
+                workdirname = Interaction.InputBox("What do you want to name your project?", "Setup", "");
 
             }
             /*string[] filePaths = Directory.GetFiles(@"c:\Maps\", "*.txt",

@@ -1,0 +1,12 @@
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\bin\Release\ScintillaNET.xml
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\bin\Release\ScintillaNET.dll
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\bin\Release\ScintillaNET.pdb
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\ScintillaNET\obj\Release\ScintillaNET.csprojResolveAssemblyReference.cache
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\ScintillaNET\obj\Release\ScintillaNET.FindReplaceDialog.resources
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\ScintillaNET\obj\Release\ScintillaNET.IncrementalSearcher.resources
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\ScintillaNET\obj\Release\ScintillaNET.GoToDialog.resources
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\ScintillaNET\obj\Release\ScintillaNET.Properties.Resources.resources
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\ScintillaNET\obj\Release\ScintillaNET.SnippetChooser.resources
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\ScintillaNET\obj\Release\ScintillaNET.csproj.GenerateResource.Cache
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\ScintillaNET\obj\Release\ScintillaNET.dll
+C:\Users\Tomek\Desktop\3DS-IDE\sctlmod\Releases\2.6\ScintillaNET\obj\Release\ScintillaNET.pdb
