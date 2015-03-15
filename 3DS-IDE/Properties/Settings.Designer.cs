@@ -34,5 +34,17 @@ namespace _3DS_IDE.Properties {
                 this["shouldNew"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string persistentworkdir {
+            get {
+                return ((string)(this["persistentworkdir"]));
+            }
+            set {
+                this["persistentworkdir"] = value;
+            }
+        }
     }
 }

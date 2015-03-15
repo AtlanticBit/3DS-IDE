@@ -66,13 +66,15 @@ namespace _3DS_IDE
                 createworkdirloc = ChooseFolder();
                 workdirname = Interaction.InputBox("What do you want to name your project?\nPlease name it with a name that is suitable for folders\nor 3DS-IDE will crash(sorry ;-;)", "Setup", "");
                 string workdir = createworkdirloc + @"\" + workdirname;
+               // MessageBox.Show("workdirval: " + workdir);
+                _3DS_IDE.Properties.Settings.Default.persistentworkdir = workdir;
                 projectname = workdirname;
                 Directory.CreateDirectory(workdir);
                 Directory.CreateDirectory(workdir + @"\code");
                 Directory.CreateDirectory(workdir + @"\output");
                 Directory.CreateDirectory(workdir + @"\data");
                 string author = Interaction.InputBox("Who is the project author?");
-                string[] projectfile = { "<?xml version=\"1.0\" encoding=\"utf-8\"?>", "<name>" + projectname + @"</name>", "<author>" + author + @"</author>" };
+                string[] projectfile = { "<?xml version=\"1.0\" encoding=\"utf-8\"?>", "<name>" + workdirname + @"</name>", "<author>" + author + @"</author>" };
                 try
                 { 
                     if (File.Exists(workdir + @"\project.lua3dsproj"))
@@ -117,8 +119,9 @@ namespace _3DS_IDE
                 }
             }
             //setup done
-
-            string[] filePaths = Directory.GetFiles(workdir + @"\code\", "*.lua", SearchOption.TopDirectoryOnly); // commented because crashed IDEview
+            //MessageBox.Show("workdirval: " + workdir);
+            workdir = _3DS_IDE.Properties.Settings.Default.persistentworkdir;
+            string[] filePaths = Directory.GetFiles(workdir + @"\code\", "*.lua"); // commented because crashed IDEview
             listBox1.DataSource = filePaths;
             this.scintilla1.ConfigurationManager.CustomLocation = @"C:\3DS-IDE\lua.xml";
             this.scintilla1.ConfigurationManager.Language = "lua";
