@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using ScintillaNET;
 using System.IO;
+using System.Xml;
 
 
 namespace _3DS_IDE
@@ -42,16 +43,24 @@ namespace _3DS_IDE
 
         //project variables
         string projectname;
-        string projectversion;
+        string projectversion = "1.0.0";
+        string projectauthor;
+        string currentlyopenedtab;
         public IDE()
         {
             InitializeComponent();
         }
-
+        void replacestring(string filepath, string whattoreplace, string forwhattoreplace)
+        {
+            var fileContents = System.IO.File.ReadAllText(filepath);
+            fileContents = fileContents.Replace(whattoreplace, forwhattoreplace);
+            System.IO.File.WriteAllText(filepath, fileContents);
+        }
         private void IDE_Load(object sender, EventArgs e)
         {
             keywordList = new List<string>(keywords.Split(' '));
             keywordList.Sort(); 
+            Setup:
             if (shouldNew)
             {
                 createworkdirloc = ChooseFolder();
@@ -60,7 +69,8 @@ namespace _3DS_IDE
                 projectname = workdirname;
                 cmd("mkdir " + workdir);
                 cmd("cd " + workdir + @" && C:\3DS-IDE\newproject.bat");
-                string[] projectfile = { "<?xml version=\"1.0\" encoding=\"utf-8\"?>", "<name>" + projectname + @"</name>", "Third line" };
+                string author = Interaction.InputBox("Who is the project author?");
+                string[] projectfile = { "<?xml version=\"1.0\" encoding=\"utf-8\"?>", "<name>" + projectname + @"</name>", "<author>" + author + @"</author>" };
                 try
                 { 
                     if (File.Exists(workdir + @"\project.lua3dsproj"))
@@ -75,14 +85,51 @@ namespace _3DS_IDE
                 {
                     MessageBox.Show(@"Error:" + ex.ToString());
                 }
+                if (!File.Exists(workdir + @"\code\index.lua"))
+                {
+                    MessageBox.Show("File doesn't exist!\nWarning code: main.lua");
+                    File.Create(workdir + @"\code\index.lua");
+                }
             }
-            /*string[] filePaths = Directory.GetFiles(@"c:\Maps\", "*.txt",
-                                         SearchOption.TopDirectoryOnly);*/ // commented because crashed IDEview
+            else
+            {
+                MessageBox.Show("Please choose a folder where a project exists", "Setup");
+                workdir = ChooseFolder();
+                XmlDocument doc = new XmlDocument();
+                if (File.Exists(workdir + @"\project.lua3dsproj"))
+                {
+                    doc.Load(workdir + @"\project.lua3dsproj");
+                    XmlNodeList elemList = doc.GetElementsByTagName("name");
+                    projectname = elemList[0].InnerText;
+                    elemList = doc.GetElementsByTagName("author");
+                    projectauthor = elemList[0].InnerText;
+                    if(!File.Exists(workdir + @"\code\index.lua"))
+                    {
+                        MessageBox.Show("File doesn't exist!\nWarning code: main.lua");
+                        File.Create(workdir + @"\code\index.lua");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("There is no project here!");
+                    goto Setup;
+                }
+            }
+            //setup done
+
+            string[] filePaths = Directory.GetFiles(workdir + @"\code\", "*.lua",
+                                         SearchOption.TopDirectoryOnly); // commented because crashed IDEview
+            listBox1.DataSource = filePaths;
             this.scintilla1.ConfigurationManager.CustomLocation = @"C:\3DS-IDE\lua.xml";
             this.scintilla1.ConfigurationManager.Language = "lua";
             this.scintilla1.AutoLaunchAutoComplete = true;
             this.scintilla1.ConfigurationManager.Configure();
             //this.scintilla1.AutoComplete.ListString = System.IO.File.ReadAllText(@"C:\3DS-IDE\autolist"); //that's wrong i guess
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
