@@ -10,10 +10,15 @@ using Microsoft.VisualBasic;
 using ScintillaNET;
 using System.IO;
 
+
 namespace _3DS_IDE
 {
     public partial class IDE : Form
     {
+        void cmd(string command)
+        {
+            System.Diagnostics.Process.Start("CMD.exe", command);
+        }
         private string keywords = System.IO.File.ReadAllText(@"C:\3DS-IDE\lua.complete");
         List<string> keywordList;
         public string ChooseFolder()
@@ -50,11 +55,29 @@ namespace _3DS_IDE
             if (shouldNew)
             {
                 createworkdirloc = ChooseFolder();
-                workdirname = Interaction.InputBox("What do you want to name your project?", "Setup", "");
+                workdirname = Interaction.InputBox("What do you want to name your project?\nPlease name it with a name that is suitable for folders\nor 3DS-IDE will crash(sorry ;-;)", "Setup", "");
+                string workdir = createworkdirloc + @"\" + workdirname;
+                projectname = workdirname;
+                cmd("mkdir " + workdir);
+                cmd("cd " + workdir + @" && C:\3DS-IDE\newproject.bat");
+                string[] projectfile = { "<?xml version=\"1.0\" encoding=\"utf-8\"?>", "<name>" + projectname + @"</name>", "Third line" };
+                try
+                { 
+                    if (File.Exists(workdir + @"\project.lua3dsproj"))
+                    {
+                        MessageBox.Show("File already exists!\nApp WILL crash now!\nError code: 12");
+                    }
+                    File.Create(workdir + @"\project.lua3dsproj");
+                    System.IO.File.WriteAllLines(workdir + @"\project.lua3dsproj", projectfile);  
+                }
 
+                catch (Exception ex)
+                {
+                    MessageBox.Show(@"Error:" + ex.ToString());
+                }
             }
             /*string[] filePaths = Directory.GetFiles(@"c:\Maps\", "*.txt",
-                                         SearchOption.TopDirectoryOnly);*/
+                                         SearchOption.TopDirectoryOnly);*/ // commented because crashed IDEview
             this.scintilla1.ConfigurationManager.CustomLocation = @"C:\3DS-IDE\lua.xml";
             this.scintilla1.ConfigurationManager.Language = "lua";
             this.scintilla1.AutoLaunchAutoComplete = true;

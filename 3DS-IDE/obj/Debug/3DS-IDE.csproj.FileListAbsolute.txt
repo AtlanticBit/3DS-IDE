@@ -12,3 +12,9 @@ C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\bin\Debug\ScintillaNET.pdb
 C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\bin\Debug\ScintillaNET.xml
 C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\obj\Debug\_3DS_IDE.select.resources
 C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\obj\Debug\_3DS_IDE.IDE.resources
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\bin\Debug\NativeBinaries\amd64\git2-e0902fb.dll
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\bin\Debug\NativeBinaries\amd64\git2-e0902fb.pdb
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\bin\Debug\NativeBinaries\x86\git2-e0902fb.dll
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\bin\Debug\NativeBinaries\x86\git2-e0902fb.pdb
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\bin\Debug\LibGit2Sharp.dll
+C:\Users\Tomek\Desktop\3DS-IDE\3DS-IDE\bin\Debug\LibGit2Sharp.xml
