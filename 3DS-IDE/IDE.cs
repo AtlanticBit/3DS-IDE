@@ -67,8 +67,10 @@ namespace _3DS_IDE
                 workdirname = Interaction.InputBox("What do you want to name your project?\nPlease name it with a name that is suitable for folders\nor 3DS-IDE will crash(sorry ;-;)", "Setup", "");
                 string workdir = createworkdirloc + @"\" + workdirname;
                 projectname = workdirname;
-                cmd("mkdir " + workdir);
-                cmd("cd " + workdir + @" && C:\3DS-IDE\newproject.bat");
+                Directory.CreateDirectory(workdir);
+                Directory.CreateDirectory(workdir + @"\code");
+                Directory.CreateDirectory(workdir + @"\output");
+                Directory.CreateDirectory(workdir + @"\data");
                 string author = Interaction.InputBox("Who is the project author?");
                 string[] projectfile = { "<?xml version=\"1.0\" encoding=\"utf-8\"?>", "<name>" + projectname + @"</name>", "<author>" + author + @"</author>" };
                 try
@@ -117,8 +119,7 @@ namespace _3DS_IDE
             }
             //setup done
 
-            string[] filePaths = Directory.GetFiles(workdir + @"\code\", "*.lua",
-                                         SearchOption.TopDirectoryOnly); // commented because crashed IDEview
+            string[] filePaths = Directory.GetFiles(workdir + @"\code\", "*.lua", SearchOption.TopDirectoryOnly); // commented because crashed IDEview
             listBox1.DataSource = filePaths;
             this.scintilla1.ConfigurationManager.CustomLocation = @"C:\3DS-IDE\lua.xml";
             this.scintilla1.ConfigurationManager.Language = "lua";
@@ -126,10 +127,25 @@ namespace _3DS_IDE
             this.scintilla1.ConfigurationManager.Configure();
             //this.scintilla1.AutoComplete.ListString = System.IO.File.ReadAllText(@"C:\3DS-IDE\autolist"); //that's wrong i guess
         }
-
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.S))
+            {
+                string[] filePaths2 = Directory.GetFiles(workdir + @"\code\", "*.lua", SearchOption.TopDirectoryOnly); // commented because crashed IDEview
+                //listBox1.DataSource = filePaths;
+                string txt;
+                txt = this.scintilla1.Text;
+                int fileint = listBox1.SelectedIndex;
+                string filepath = filePaths2[fileint];
+                File.WriteAllText(filepath, txt);
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            string[] filePaths3 = Directory.GetFiles(workdir + @"\code\", "*.lua", SearchOption.TopDirectoryOnly);
+            this.scintilla1.Text = File.ReadAllText(filePaths3[this.listBox1.SelectedIndex]);
         }
     }
 }

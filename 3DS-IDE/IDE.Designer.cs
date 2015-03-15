@@ -45,6 +45,8 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.saveCTRLSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -169,6 +171,8 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveCTRLSToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -197,6 +201,22 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "The Designer will be used in the future\r\nfor the Interface Designer!";
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(137, 29);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(148, 85);
+            this.richTextBox1.TabIndex = 6;
+            this.richTextBox1.Text = "Warnings:\nWhen you change files\nthey don\'t save automagically!\nRemember to save!\n" +
+    "(psps: sorryy gonna fix\nthat later)";
+            // 
+            // saveCTRLSToolStripMenuItem
+            // 
+            this.saveCTRLSToolStripMenuItem.Name = "saveCTRLSToolStripMenuItem";
+            this.saveCTRLSToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.saveCTRLSToolStripMenuItem.Text = "Save    (CTRL+S)";
+            // 
             // IDE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,6 +224,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(994, 752);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.pictureBox2);
@@ -250,5 +271,7 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ToolStripMenuItem saveCTRLSToolStripMenuItem;
     }
 }
