@@ -79,7 +79,6 @@ namespace _3DS_IDE
                     {
                         MessageBox.Show("File already exists!\nApp WILL crash now!\nError code: 12");
                     }
-                    File.Create(workdir + @"\project.lua3dsproj");
                     System.IO.File.WriteAllLines(workdir + @"\project.lua3dsproj", projectfile);  
                 }
 
