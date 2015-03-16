@@ -16,10 +16,6 @@ namespace _3DS_IDE
 {
     public partial class IDE : Form
     {
-        void cmd(string command)
-        {
-            System.Diagnostics.Process.Start("CMD.exe", command);
-        }
         private string keywords = System.IO.File.ReadAllText(@"C:\3DS-IDE\lua.complete");
         List<string> keywordList;
         public string ChooseFolder()

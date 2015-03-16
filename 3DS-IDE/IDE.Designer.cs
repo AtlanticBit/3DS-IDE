@@ -36,17 +36,17 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.scintilla1 = new ScintillaNET.Scintilla();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.saveCTRLSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -117,6 +117,15 @@
             this.tabPage2.Text = "Interface Designer";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(242, 350);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(188, 26);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "The Designer will be used in the future\r\nfor the Interface Designer!";
+            // 
             // tabControl2
             // 
             this.tabControl2.Controls.Add(this.tabPage3);
@@ -158,6 +167,15 @@
             this.tabPage4.Text = "Toolbox";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(31, 281);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(180, 26);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "The toolbox will be used in the future\r\nfor the Interface Designer!";
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -177,29 +195,17 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // saveCTRLSToolStripMenuItem
+            // 
+            this.saveCTRLSToolStripMenuItem.Name = "saveCTRLSToolStripMenuItem";
+            this.saveCTRLSToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.saveCTRLSToolStripMenuItem.Text = "Save    (CTRL+S)";
+            // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 281);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(180, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "The toolbox will be used in the future\r\nfor the Interface Designer!";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(242, 350);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(188, 26);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "The Designer will be used in the future\r\nfor the Interface Designer!";
             // 
             // richTextBox1
             // 
@@ -208,14 +214,8 @@
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(148, 85);
             this.richTextBox1.TabIndex = 6;
-            this.richTextBox1.Text = "Warnings:\nWhen you change files\nthey don\'t save automagically!\nRemember to save!\n" +
-    "(psps: sorryy gonna fix\nthat later)";
-            // 
-            // saveCTRLSToolStripMenuItem
-            // 
-            this.saveCTRLSToolStripMenuItem.Name = "saveCTRLSToolStripMenuItem";
-            this.saveCTRLSToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.saveCTRLSToolStripMenuItem.Text = "Save    (CTRL+S)";
+            this.richTextBox1.Text = "Warnings:\nWhen you change files\nthey save automagically\nso if you make errors\nple" +
+    "ase correct them!";
             // 
             // IDE
             // 
