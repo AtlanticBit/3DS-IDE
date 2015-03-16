@@ -24,6 +24,7 @@ namespace _3DS_IDE
 
         private void button1_Click(object sender, EventArgs e)
         {
+            _3DS_IDE.Properties.Settings.Default.Reset();
             _3DS_IDE.Properties.Settings.Default.shouldNew = true;
             _3DS_IDE.Properties.Settings.Default.Save();
             ideform.Show();
@@ -32,6 +33,7 @@ namespace _3DS_IDE
 
         private void button2_Click(object sender, EventArgs e)
         {
+            _3DS_IDE.Properties.Settings.Default.Reset();
             _3DS_IDE.Properties.Settings.Default.shouldNew = false;
             _3DS_IDE.Properties.Settings.Default.Save();
             ideform.Show();

@@ -32,37 +32,53 @@ namespace _3DS_IDE
         private void Form1_Load(object sender, EventArgs e)
         {
             timer1.Start();
+            //first goal fix integrity check
+           //File.Exists(EVERYTHING);
+          //just pls pull request me
+            bool integcheck;
             if (Directory.Exists(@"C:\3DS-IDE\devkitPro"))
             {
                 this.pictureBox1.Image = _3DS_IDE.Properties.Resources.check_icon;
+                integcheck = true;
             }
             else
             {
                 this.pictureBox1.Image = _3DS_IDE.Properties.Resources.Error_icon;
+                integcheck = false;
             }
             if (Directory.Exists(@"C:\3DS-IDE\devkitPro\devkitARM"))
             {
                 this.pictureBox4.Image = _3DS_IDE.Properties.Resources.check_icon;
+                integcheck = true;
             }
             else
             {
                 this.pictureBox4.Image = _3DS_IDE.Properties.Resources.Error_icon;
+                integcheck = false;
             }
             if (Directory.Exists(@"C:\3DS-IDE\magicctrulib"))
             {
                 this.pictureBox3.Image = _3DS_IDE.Properties.Resources.check_icon;
+                integcheck = true;
             }
             else
             {
                 this.pictureBox3.Image = _3DS_IDE.Properties.Resources.Error_icon;
+                integcheck = false;
             }
             if (Directory.Exists(@"C:\3DS-IDE\tools"))
             {
                 this.pictureBox2.Image = _3DS_IDE.Properties.Resources.check_icon;
+                integcheck = true;
             }
             else
             {
                 this.pictureBox2.Image = _3DS_IDE.Properties.Resources.Error_icon;
+                integcheck = false;
+            }
+            if (integcheck)
+            {
+                
             }
             timer1.Stop();
             this.Text = "Finished";
@@ -98,6 +114,7 @@ namespace _3DS_IDE
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             MessageBox.Show("To make sure everything works\nthe right way\nset CTRULIB\nDEVKITARM\nand DEVKITPRO\nin your environmental values!");
             this.Hide();
             select Form45 = new select();

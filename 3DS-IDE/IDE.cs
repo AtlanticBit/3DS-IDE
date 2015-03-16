@@ -70,7 +70,8 @@ namespace _3DS_IDE
                 Directory.CreateDirectory(workdir + @"\output");
                 Directory.CreateDirectory(workdir + @"\data");
                 string author = Interaction.InputBox("Who is the project author?");
-                string[] projectfile = { "<?xml version=\"1.0\" encoding=\"utf-8\"?>", "<name>" + workdirname + @"</name>", "<author>" + author + @"</author>" };
+                string[] projectfile = { "<?xml version=\"1.0\" encoding=\"utf-8\"?>", "<project>" , "<name>" + workdirname + @"</name>", "<author>" + author + @"</author>", @"</project>" };
+                MessageBox.Show("Projfilecontents. " + projectfile[1] + " " + projectfile[2]);
                 try
                 { 
                     if (File.Exists(workdir + @"\project.lua3dsproj"))
@@ -99,7 +100,10 @@ namespace _3DS_IDE
                 XmlDocument doc = new XmlDocument();
                 if (File.Exists(workdir + @"\project.lua3dsproj"))
                 {
-                    doc.Load(workdir + @"\project.lua3dsproj");
+                    string projectfile = File.ReadAllText(workdir + @"\project.lua3dsproj");
+                    try { doc.LoadXml(projectfile); }
+                    catch (Exception ex) { MessageBox.Show("A wild exception has appeared! " + ex.ToString()); }
+                    
                     XmlNodeList elemList = doc.GetElementsByTagName("name");
                     projectname = elemList[0].InnerText;
                     elemList = doc.GetElementsByTagName("author");
@@ -117,7 +121,7 @@ namespace _3DS_IDE
                 }
             }
             //setup done
-            //MessageBox.Show("workdirval: " + workdir);
+           //MessageBox.Show("workdirval: " + workdir);
             workdir = _3DS_IDE.Properties.Settings.Default.persistentworkdir;
             string[] filePaths = Directory.GetFiles(workdir + @"\code\", "*.lua"); // commented because crashed IDEview
             listBox1.DataSource = filePaths;
