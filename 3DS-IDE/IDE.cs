@@ -60,7 +60,7 @@ namespace _3DS_IDE
         {
             keywordList = new List<string>(keywords.Split(' '));
             keywordList.Sort(); 
-            Setup:
+            //Setup:
             if (shouldNew)
             {
                 createworkdirloc = ChooseFolder();
@@ -90,12 +90,14 @@ namespace _3DS_IDE
                 }
                 if (!File.Exists(workdir + @"\code\index.lua"))
                 {
-                    MessageBox.Show("File doesn't exist!\nWarning code: main.lua");
-                    File.Create(workdir + @"\code\index.lua");
+                    //MessageBox.Show("File doesn't exist!\nWarning code: main.lua");
+                    File.Create(workdir + @"\code\main.lua").Close();
+
                 }
             }
             else
             {
+            Setup:
                 MessageBox.Show("Please choose a folder where a project exists", "Setup");
                 workdir = ChooseFolder();
                 XmlDocument doc = new XmlDocument();
@@ -109,7 +111,7 @@ namespace _3DS_IDE
                     if(!File.Exists(workdir + @"\code\index.lua"))
                     {
                         MessageBox.Show("File doesn't exist!\nWarning code: main.lua");
-                        File.Create(workdir + @"\code\index.lua");
+                        File.Create(workdir + @"\code\index.lua").Close();
                     }
                 }
                 else
@@ -133,6 +135,7 @@ namespace _3DS_IDE
         {
             if (keyData == (Keys.Control | Keys.S))
             {
+                workdir = _3DS_IDE.Properties.Settings.Default.persistentworkdir;
                 string[] filePaths2 = Directory.GetFiles(workdir + @"\code\", "*.lua", SearchOption.TopDirectoryOnly); // commented because crashed IDEview
                 //listBox1.DataSource = filePaths;
                 string txt;
@@ -146,6 +149,7 @@ namespace _3DS_IDE
         }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            workdir = _3DS_IDE.Properties.Settings.Default.persistentworkdir;
             string[] filePaths3 = Directory.GetFiles(workdir + @"\code\", "*.lua", SearchOption.TopDirectoryOnly);
             this.scintilla1.Text = File.ReadAllText(filePaths3[this.listBox1.SelectedIndex]);
         }

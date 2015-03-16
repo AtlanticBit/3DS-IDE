@@ -24,16 +24,16 @@ namespace _3DS_IDE
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.shouldNew = true;
-            Properties.Settings.Default.Save();
+            _3DS_IDE.Properties.Settings.Default.shouldNew = true;
+            _3DS_IDE.Properties.Settings.Default.Save();
             ideform.Show();
             this.Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.shouldNew = false;
-            Properties.Settings.Default.Save();
+            _3DS_IDE.Properties.Settings.Default.shouldNew = false;
+            _3DS_IDE.Properties.Settings.Default.Save();
             ideform.Show();
             this.Hide();
         }
