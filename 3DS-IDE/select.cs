@@ -19,7 +19,7 @@ namespace _3DS_IDE
 
         private void select_Load(object sender, EventArgs e)
         {
-
+            _3DS_IDE.Properties.Settings.Default.Reset();
         }
 
         private void button1_Click(object sender, EventArgs e)
